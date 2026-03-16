@@ -1,31 +1,50 @@
 aid: tinybird
 name: Tinybird
 description: >-
-  The Environment Variables API allows you to create, update, delete and list
-  environment variables that can be used in Pipes in a Workspace.
+  Tinybird is a real-time data platform that allows you to ingest, process, and
+  expose data through low-latency, high-concurrency APIs.
 type: Index
 position: Consumer
 access: 3rd-Party
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - API
+  - Analytics
+  - Data
+  - Real-Time
 created: '2025-01-08'
-modified: '2025-01-08'
+modified: '2026-03-16'
 url: >-
   https://raw.githubusercontent.com/api-evangelist/tinybird/refs/heads/main/apis.yml
 specificationVersion: '0.19'
 apis:
   - aid: tinybird:tinybird
-    name: Tinybird
+    name: Tinybird API
     description: >-
-      The Environment Variables API allows you to create, update, delete and
-      list environment variables that can be used in Pipes in a Workspace.
-    humanURL: https://www.tinybird.co/docs/api-reference/environment-variables-api
+      Tinybird provides a real-time data platform with APIs for ingesting,
+      processing, and exposing data through low-latency, high-concurrency
+      API endpoints.
+    humanURL: https://www.tinybird.co/docs/api-reference
+    baseURL: https://api.tinybird.co
     tags:
-      - API
+      - Analytics
+      - Data
+      - Real-Time
     properties:
       - type: Documentation
-        url: https://www.tinybird.co/docs/api-reference/environment-variables-api
+        url: https://www.tinybird.co/docs/api-reference
+      - type: Getting Started
+        url: https://www.tinybird.co/docs/get-started
+common:
+  - type: Website
+    url: https://www.tinybird.co/
+  - type: Documentation
+    url: https://www.tinybird.co/docs/api-reference
+  - type: Getting Started
+    url: https://www.tinybird.co/docs/get-started
+  - type: Sign Up
+    url: https://www.tinybird.co/signup
+  - type: Blog
+    url: https://www.tinybird.co/blog
 maintainers:
   - FN: Kin Lane
-    email: info@apievangelist.com
+    email: kin@apievangelist.com
