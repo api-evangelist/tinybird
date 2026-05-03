@@ -1,0 +1,71 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/tinybird/main/json-schema/tinybird-pipe-schema.json",
+  "title": "Tinybird Pipe",
+  "description": "Schema for a Tinybird Pipe resource representing a data transformation pipeline",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the pipe"
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the pipe"
+    },
+    "description": {
+      "type": "string",
+      "description": "Human-readable description of the pipe's purpose"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["standard", "materialized", "sink", "copy"],
+      "description": "Pipe type determining its behavior"
+    },
+    "nodes": {
+      "type": "array",
+      "description": "SQL transformation nodes in the pipe",
+      "items": {
+        "$ref": "#/definitions/PipeNode"
+      }
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "endpoint": {
+      "type": "string",
+      "description": "Public API endpoint URL if the pipe is published as an endpoint"
+    }
+  },
+  "required": ["id", "name"],
+  "definitions": {
+    "PipeNode": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "sql": {
+          "type": "string",
+          "description": "SQL transformation query for this node"
+        },
+        "description": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["id", "sql"]
+    }
+  }
+}

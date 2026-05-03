@@ -1,0 +1,451 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Tinybird API"
+  description: >-
+    Tinybird real-time data platform API providing data source management, SQL-based
+    pipe transformations, event ingestion, token management, job tracking, and
+    organization administration.
+  tags:
+    - Analytics
+    - Data Platform
+    - Real-Time
+    - SQL
+    - Streaming
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+binds:
+  - namespace: env
+    keys:
+      TINYBIRD_TOKEN: TINYBIRD_TOKEN
+
+capability:
+  consumes:
+    - type: http
+      namespace: tinybird
+      baseUri: https://api.tinybird.co
+      description: "Tinybird real-time data platform REST API"
+      authentication:
+        type: bearer
+        token: "{{TINYBIRD_TOKEN}}"
+      resources:
+        - name: data-sources
+          path: /v0/datasources
+          description: "Manage Tinybird data sources"
+          operations:
+            - name: list-data-sources
+              method: GET
+              description: "List all accessible data sources in the workspace"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-data-source
+              method: POST
+              description: "Create, append, or replace a data source"
+              inputParameters:
+                - name: mode
+                  in: query
+                  type: string
+                  required: false
+                  description: "Operation mode: create, append, or replace"
+                - name: name
+                  in: query
+                  type: string
+                  required: false
+                  description: "Name of the data source"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: data-source
+          path: /v0/datasources/{name}
+          description: "Manage a specific data source"
+          operations:
+            - name: get-data-source
+              method: GET
+              description: "Retrieve information and statistics for a specific data source"
+              inputParameters:
+                - name: name
+                  in: path
+                  type: string
+                  required: true
+                  description: "Name of the data source"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: delete-data-source
+              method: DELETE
+              description: "Drop an entire data source and all its data"
+              inputParameters:
+                - name: name
+                  in: path
+                  type: string
+                  required: true
+                  description: "Name of the data source"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: truncate-data-source
+              method: POST
+              description: "Remove all data from a data source"
+              inputParameters:
+                - name: name
+                  in: path
+                  type: string
+                  required: true
+                  description: "Name of the data source to truncate"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: events
+          path: /v0/events
+          description: "Ingest NDJSON events into data sources"
+          operations:
+            - name: ingest-events
+              method: POST
+              description: "Ingest NDJSON events via HTTP POST"
+              inputParameters:
+                - name: name
+                  in: query
+                  type: string
+                  required: true
+                  description: "Target data source name"
+                - name: wait
+                  in: query
+                  type: boolean
+                  required: false
+                  description: "Wait for ingestion to complete"
+              body:
+                type: text
+                data: "{{tools.events_payload}}"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: pipes
+          path: /v0/pipes
+          description: "Manage Tinybird transformation pipes"
+          operations:
+            - name: list-pipes
+              method: GET
+              description: "List all pipes in the workspace"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-pipe
+              method: POST
+              description: "Create a new SQL transformation pipe"
+              body:
+                type: json
+                data:
+                  name: "{{tools.pipe_name}}"
+                  description: "{{tools.pipe_description}}"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: pipe
+          path: /v0/pipes/{name}
+          description: "Manage a specific pipe"
+          operations:
+            - name: get-pipe
+              method: GET
+              description: "Retrieve details about a specific pipe"
+              inputParameters:
+                - name: name
+                  in: path
+                  type: string
+                  required: true
+                  description: "Pipe name"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: delete-pipe
+              method: DELETE
+              description: "Delete a pipe and all its nodes"
+              inputParameters:
+                - name: name
+                  in: path
+                  type: string
+                  required: true
+                  description: "Pipe name"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: query
+          path: /v0/sql
+          description: "Execute SQL queries against Tinybird data"
+          operations:
+            - name: execute-sql-query
+              method: GET
+              description: "Execute a SQL query against Tinybird data"
+              inputParameters:
+                - name: q
+                  in: query
+                  type: string
+                  required: true
+                  description: "SQL query string"
+                - name: format
+                  in: query
+                  type: string
+                  required: false
+                  description: "Output format: JSON, CSV, NDJSON, Parquet"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: tokens
+          path: /v0/tokens
+          description: "Manage Tinybird authentication tokens"
+          operations:
+            - name: list-tokens
+              method: GET
+              description: "Retrieve all workspace static tokens"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-token
+              method: POST
+              description: "Create a new token with specified scopes"
+              body:
+                type: json
+                data:
+                  name: "{{tools.token_name}}"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: jobs
+          path: /v0/jobs
+          description: "Track Tinybird background jobs"
+          operations:
+            - name: list-jobs
+              method: GET
+              description: "Retrieve job history from the past 48 hours or last 100 jobs"
+              inputParameters:
+                - name: status
+                  in: query
+                  type: string
+                  required: false
+                  description: "Filter by status: done, error, working, waiting"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8100
+      namespace: tinybird-api
+      resources:
+        - path: /v1/data-sources
+          name: data-sources
+          description: "Manage Tinybird data sources"
+          operations:
+            - method: GET
+              name: list-data-sources
+              description: "List all data sources"
+              call: "tinybird.list-data-sources"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-data-source
+              description: "Create a new data source"
+              call: "tinybird.create-data-source"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/data-sources/{name}
+          name: data-source
+          description: "Specific data source operations"
+          operations:
+            - method: GET
+              name: get-data-source
+              description: "Get data source details"
+              call: "tinybird.get-data-source"
+              with:
+                name: "rest.name"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: DELETE
+              name: delete-data-source
+              description: "Delete a data source"
+              call: "tinybird.delete-data-source"
+              with:
+                name: "rest.name"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/events
+          name: events
+          description: "Ingest events"
+          operations:
+            - method: POST
+              name: ingest-events
+              description: "Ingest NDJSON events"
+              call: "tinybird.ingest-events"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/pipes
+          name: pipes
+          description: "Manage transformation pipes"
+          operations:
+            - method: GET
+              name: list-pipes
+              description: "List all pipes"
+              call: "tinybird.list-pipes"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/query
+          name: query
+          description: "Execute SQL queries"
+          operations:
+            - method: GET
+              name: execute-sql-query
+              description: "Run a SQL query"
+              call: "tinybird.execute-sql-query"
+              with:
+                q: "rest.q"
+                format: "rest.format"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/tokens
+          name: tokens
+          description: "Manage authentication tokens"
+          operations:
+            - method: GET
+              name: list-tokens
+              description: "List all tokens"
+              call: "tinybird.list-tokens"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/jobs
+          name: jobs
+          description: "Monitor background jobs"
+          operations:
+            - method: GET
+              name: list-jobs
+              description: "List jobs"
+              call: "tinybird.list-jobs"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9100
+      namespace: tinybird-mcp
+      transport: http
+      tools:
+        - name: list-data-sources
+          description: "List all data sources in the Tinybird workspace"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "tinybird.list-data-sources"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-data-source
+          description: "Get statistics and schema for a specific data source"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "tinybird.get-data-source"
+          with:
+            name: "tools.name"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: ingest-events
+          description: "Ingest NDJSON events into a Tinybird data source"
+          hints:
+            readOnly: false
+            destructive: false
+          call: "tinybird.ingest-events"
+          with:
+            name: "tools.name"
+            events_payload: "tools.events_payload"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-pipes
+          description: "List all transformation pipes in the workspace"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "tinybird.list-pipes"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-pipe
+          description: "Get details and nodes of a specific transformation pipe"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "tinybird.get-pipe"
+          with:
+            name: "tools.name"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: execute-sql-query
+          description: "Execute a SQL query against Tinybird data sources and pipes"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "tinybird.execute-sql-query"
+          with:
+            q: "tools.q"
+            format: "tools.format"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-tokens
+          description: "List all authentication tokens in the workspace"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "tinybird.list-tokens"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-jobs
+          description: "List recent background jobs with optional status filter"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "tinybird.list-jobs"
+          with:
+            status: "tools.status"
+          outputParameters:
+            - type: object
+              mapping: "$."

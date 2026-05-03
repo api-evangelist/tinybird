@@ -1,0 +1,184 @@
+vocabulary:
+  name: Tinybird Vocabulary
+  description: >-
+    Vocabulary and taxonomy for the Tinybird real-time data platform covering
+    data ingestion, transformation, querying, publishing, and administration concepts.
+  version: '1.0'
+  created: '2026-05-03'
+  modified: '2026-05-03'
+
+terms:
+  - term: Data Source
+    definition: >-
+      A table-like data store in Tinybird where raw data is ingested and stored.
+      Data Sources are created from file uploads, streaming ingestion, or connectors.
+    aliases:
+      - Datasource
+      - Table
+    tags:
+      - Core Concept
+      - Data Storage
+
+  - term: Pipe
+    definition: >-
+      A SQL transformation pipeline in Tinybird that reads from one or more Data Sources
+      or other Pipes and optionally publishes results as a REST API endpoint.
+    aliases:
+      - Transformation
+      - Pipeline
+    tags:
+      - Core Concept
+      - Transformation
+
+  - term: Pipe Node
+    definition: >-
+      A single SQL transformation step within a Pipe. Pipes are composed of one or
+      more nodes executed in sequence.
+    tags:
+      - Core Concept
+      - Transformation
+
+  - term: API Endpoint
+    definition: >-
+      A published REST API endpoint derived from a Pipe that external consumers can
+      query with parameters. Endpoints support JSON, CSV, NDJSON, and Parquet formats.
+    aliases:
+      - Endpoint
+      - Published API
+    tags:
+      - Publishing
+      - API
+
+  - term: Events API
+    definition: >-
+      The HTTP POST endpoint for streaming NDJSON events into a Data Source in
+      real time with sub-second latency.
+    tags:
+      - Ingestion
+      - Streaming
+      - Real-Time
+
+  - term: Materialized View
+    definition: >-
+      A pre-computed Pipe result that is automatically updated as new data arrives,
+      enabling fast aggregation queries without scanning raw data.
+    tags:
+      - Optimization
+      - Performance
+
+  - term: Sink Pipe
+    definition: >-
+      A Pipe that exports data to external destinations on a schedule or trigger,
+      such as S3, Kafka, or other data stores.
+    tags:
+      - Export
+      - Integration
+
+  - term: Token
+    definition: >-
+      An authentication credential with scoped permissions for accessing specific
+      Tinybird resources. Tokens can be static or JWT-based.
+    aliases:
+      - API Key
+      - Auth Token
+    tags:
+      - Security
+      - Authentication
+
+  - term: Workspace
+    definition: >-
+      An isolated environment within a Tinybird organization containing Data Sources,
+      Pipes, and Tokens. Multiple workspaces can exist per organization.
+    tags:
+      - Multi-Tenancy
+      - Organization
+
+  - term: Organization
+    definition: >-
+      The top-level account container in Tinybird, holding multiple workspaces
+      and managing billing, members, and cluster resources.
+    tags:
+      - Administration
+      - Multi-Tenancy
+
+  - term: Query API
+    definition: >-
+      The SQL execution endpoint that allows running arbitrary SQL queries against
+      Tinybird Data Sources and Pipes without publishing a fixed endpoint.
+    tags:
+      - Query
+      - SQL
+
+  - term: NDJSON
+    definition: >-
+      Newline-delimited JSON format used for streaming event ingestion and data
+      exports in Tinybird. Each line is a complete JSON object.
+    aliases:
+      - Newline-Delimited JSON
+    tags:
+      - Format
+      - Streaming
+
+  - term: ClickHouse
+    definition: >-
+      The underlying columnar database engine that powers Tinybird's storage and
+      query execution layer, enabling high-performance real-time analytics.
+    tags:
+      - Infrastructure
+      - Database
+
+  - term: TTL Expression
+    definition: >-
+      A time-to-live configuration on a Data Source that automatically deletes
+      rows older than the specified duration or matching a condition.
+    tags:
+      - Data Management
+      - Retention
+
+  - term: Cluster
+    definition: >-
+      A regional deployment unit in Tinybird that hosts workspaces and Data Sources.
+      Multiple replicas can be added or removed via the Organizations API.
+    tags:
+      - Infrastructure
+      - Deployment
+
+  - term: Environment Variable
+    definition: >-
+      A named value stored in a Tinybird workspace that can be referenced
+      within Pipe SQL queries using template syntax.
+    tags:
+      - Configuration
+      - Template
+
+  - term: Copy Pipe
+    definition: >-
+      A Pipe type that copies data from one Data Source to another, enabling
+      data replication and transformation between workspaces.
+    tags:
+      - Data Management
+      - Migration
+
+  - term: Job
+    definition: >-
+      An asynchronous background task in Tinybird tracking operations like bulk
+      imports, schema alterations, or copy operations.
+    tags:
+      - Async Operations
+      - Monitoring
+
+  - term: Analyze
+    definition: >-
+      The process of inferring a Data Source schema from sample data files
+      (NDJSON, CSV, Parquet) before creating the data source.
+    tags:
+      - Schema Inference
+      - Onboarding
+
+  - term: Scope
+    definition: >-
+      A permission specifier on a Tinybird Token that grants specific access
+      to resources (e.g., DATASOURCES:READ, PIPE:CREATE, ADMIN).
+    tags:
+      - Security
+      - Authorization

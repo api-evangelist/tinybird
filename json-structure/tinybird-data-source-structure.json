@@ -1,0 +1,64 @@
+{
+  "title": "Tinybird Data Source Structure",
+  "description": "Structural documentation for the Tinybird Data Source resource",
+  "type": "object",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string",
+      "description": "Unique identifier for the data source",
+      "required": true
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "description": "Name of the data source",
+      "required": true
+    },
+    {
+      "name": "cluster",
+      "type": "string",
+      "description": "Cluster assignment for the data source"
+    },
+    {
+      "name": "tags",
+      "type": "object",
+      "description": "Key-value metadata tags"
+    },
+    {
+      "name": "schema",
+      "type": "string",
+      "description": "ClickHouse schema definition"
+    },
+    {
+      "name": "created_at",
+      "type": "string (ISO 8601)",
+      "description": "Creation timestamp"
+    },
+    {
+      "name": "updated_at",
+      "type": "string (ISO 8601)",
+      "description": "Last modification timestamp"
+    },
+    {
+      "name": "row_count",
+      "type": "integer",
+      "description": "Total number of stored rows"
+    },
+    {
+      "name": "disk_bytes",
+      "type": "integer",
+      "description": "Storage consumption in bytes"
+    },
+    {
+      "name": "replicated",
+      "type": "boolean",
+      "description": "Replication status across nodes"
+    },
+    {
+      "name": "ttl_expression",
+      "type": "string",
+      "description": "Automatic data expiration expression"
+    }
+  ]
+}

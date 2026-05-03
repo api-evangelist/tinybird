@@ -1,0 +1,21 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.tinybird.co/v0/events?name=analytics_events",
+    "headers": {
+      "Authorization": "Bearer p.eyJ1IjoiZXhhbXBsZSJ9.example_token",
+      "Content-Type": "application/x-ndjson"
+    },
+    "body": "{\"event_id\":\"evt_001\",\"user_id\":\"usr_123\",\"event_type\":\"page_view\",\"timestamp\":\"2026-05-03T14:00:00Z\",\"properties\":\"{\\\"page\\\":\\\"/dashboard\\\",\\\"referrer\\\":\\\"google\\\"}\"}\n{\"event_id\":\"evt_002\",\"user_id\":\"usr_456\",\"event_type\":\"button_click\",\"timestamp\":\"2026-05-03T14:00:01Z\",\"properties\":\"{\\\"button\\\":\\\"upgrade\\\",\\\"page\\\":\\\"/pricing\\\"}\"}"
+  },
+  "response": {
+    "status": 202,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "successful_rows": 2,
+      "quarantined_rows": 0
+    }
+  }
+}

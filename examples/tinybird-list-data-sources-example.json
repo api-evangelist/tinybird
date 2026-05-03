@@ -1,0 +1,47 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.tinybird.co/v0/datasources/",
+    "headers": {
+      "Authorization": "Bearer p.eyJ1IjoiZXhhbXBsZSJ9.example_token"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "datasources": [
+        {
+          "id": "t_abc123",
+          "name": "analytics_events",
+          "cluster": "latest",
+          "tags": {
+            "environment": "production"
+          },
+          "schema": "event_id String, user_id String, event_type String, timestamp DateTime, properties String",
+          "created_at": "2026-01-15T10:30:00Z",
+          "updated_at": "2026-05-01T08:00:00Z",
+          "row_count": 5420000,
+          "disk_bytes": 215040000,
+          "replicated": true,
+          "ttl_expression": "toDateTime(timestamp) + INTERVAL 90 DAY"
+        },
+        {
+          "id": "t_def456",
+          "name": "user_profiles",
+          "cluster": "latest",
+          "tags": {},
+          "schema": "user_id String, email String, created_at DateTime, plan String",
+          "created_at": "2026-02-01T09:00:00Z",
+          "updated_at": "2026-04-28T12:00:00Z",
+          "row_count": 45000,
+          "disk_bytes": 1800000,
+          "replicated": true,
+          "ttl_expression": null
+        }
+      ]
+    }
+  }
+}

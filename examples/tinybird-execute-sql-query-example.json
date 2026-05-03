@@ -1,0 +1,47 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.tinybird.co/v0/sql?q=SELECT%20event_type%2C%20count()%20as%20events%20FROM%20analytics_events%20WHERE%20timestamp%20%3E%3D%20today()%20GROUP%20BY%20event_type%20ORDER%20BY%20events%20DESC%20LIMIT%2010",
+    "headers": {
+      "Authorization": "Bearer p.eyJ1IjoiZXhhbXBsZSJ9.example_token"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "meta": [
+        {
+          "name": "event_type",
+          "type": "String"
+        },
+        {
+          "name": "events",
+          "type": "UInt64"
+        }
+      ],
+      "data": [
+        {
+          "event_type": "page_view",
+          "events": 12450
+        },
+        {
+          "event_type": "button_click",
+          "events": 3821
+        },
+        {
+          "event_type": "form_submit",
+          "events": 945
+        }
+      ],
+      "rows": 3,
+      "statistics": {
+        "elapsed": 0.042,
+        "rows_read": 5420000,
+        "bytes_read": 108400000
+      }
+    }
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "tinybird": "https://www.tinybird.co/vocab/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "DataSource": "tinybird:DataSource",
+    "Pipe": "tinybird:Pipe",
+    "PipeNode": "tinybird:PipeNode",
+    "Token": "tinybird:Token",
+    "Job": "tinybird:Job",
+    "Organization": "schema:Organization",
+    "Workspace": "tinybird:Workspace",
+    "EnvVar": "tinybird:EnvironmentVariable",
+
+    "id": "@id",
+    "name": "schema:name",
+    "description": "schema:description",
+    "created_at": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    "updated_at": {
+      "@id": "schema:dateModified",
+      "@type": "xsd:dateTime"
+    },
+
+    "schema_def": "tinybird:schemaDefinition",
+    "cluster": "tinybird:cluster",
+    "row_count": "tinybird:rowCount",
+    "disk_bytes": "tinybird:diskBytes",
+    "replicated": "tinybird:replicated",
+    "ttl_expression": "tinybird:ttlExpression",
+    "tags": "schema:keywords",
+
+    "nodes": "tinybird:hasNode",
+    "sql": "tinybird:sqlQuery",
+    "pipe_type": "tinybird:pipeType",
+    "endpoint": "schema:url",
+
+    "token": "tinybird:tokenValue",
+    "scopes": "tinybird:hasScope",
+    "scope_type": "tinybird:scopeType",
+    "resource": "tinybird:scopeResource",
+    "filter": "tinybird:rowFilter",
+
+    "job_kind": "tinybird:jobKind",
+    "status": "tinybird:jobStatus",
+    "progress": "tinybird:jobProgress",
+    "error": "schema:error",
+
+    "region": "schema:areaServed",
+    "baseUri": "schema:url",
+    "format": "schema:encodingFormat",
+    "query": "tinybird:sqlStatement"
+  }
+}

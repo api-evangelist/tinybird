@@ -1,0 +1,112 @@
+extends: spectral:oas
+rules:
+
+  tinybird-operation-ids-required:
+    description: All operations must have operationId values
+    message: Operation must have an operationId
+    severity: error
+    given: $.paths[*][get,post,put,delete,patch]
+    then:
+      field: operationId
+      function: defined
+
+  tinybird-operation-summaries-required:
+    description: All operations must have a summary
+    message: Operation must have a summary
+    severity: error
+    given: $.paths[*][get,post,put,delete,patch]
+    then:
+      field: summary
+      function: defined
+
+  tinybird-operation-tags-required:
+    description: All operations must have at least one tag
+    message: Operation must have at least one tag for grouping
+    severity: warn
+    given: $.paths[*][get,post,put,delete,patch]
+    then:
+      field: tags
+      function: defined
+
+  tinybird-versioned-paths:
+    description: All paths must begin with /v0/ to indicate API versioning
+    message: Path {{value}} must begin with /v0/
+    severity: error
+    given: $.paths
+    then:
+      function: pattern
+      functionOptions:
+        match: "^/v0/"
+
+  tinybird-no-trailing-slash:
+    description: Paths should not have trailing slashes (except root collection paths)
+    message: Path should not end with a trailing slash unless it is a collection path
+    severity: hint
+    given: $.paths
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: ".[^/]/$"
+
+  tinybird-bearer-auth-required:
+    description: APIs must define bearer token security scheme
+    message: Security scheme must include bearerAuth of type bearer
+    severity: error
+    given: $.components.securitySchemes.bearerAuth
+    then:
+      function: defined
+
+  tinybird-response-200-defined:
+    description: All GET operations must define a 200 response
+    message: GET operation must have a 200 response defined
+    severity: error
+    given: $.paths[*].get
+    then:
+      field: responses.200
+      function: defined
+
+  tinybird-error-responses-defined:
+    description: Operations should define 401 unauthorized responses
+    message: Operation should include 401 response for unauthorized access
+    severity: warn
+    given: $.paths[*][post,put,delete,patch]
+    then:
+      field: responses.401
+      function: defined
+
+  tinybird-schemas-have-descriptions:
+    description: Schema objects should have descriptions
+    message: Schema property should include a description
+    severity: hint
+    given: $.components.schemas[*]
+    then:
+      field: description
+      function: defined
+
+  tinybird-kebab-case-operation-ids:
+    description: Operation IDs must use camelCase (Tinybird convention)
+    message: OperationId {{value}} must use camelCase
+    severity: warn
+    given: $.paths[*][get,post,put,delete,patch].operationId
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+
+  tinybird-info-contact-defined:
+    description: API info must include contact information
+    message: API info.contact must be defined
+    severity: warn
+    given: $.info
+    then:
+      field: contact
+      function: defined
+
+  tinybird-servers-defined:
+    description: API must define server URLs
+    message: At least one server must be defined
+    severity: error
+    given: $
+    then:
+      field: servers
+      function: defined
