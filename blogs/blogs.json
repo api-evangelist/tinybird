@@ -1,0 +1,13 @@
+{
+  "repo": "tinybird",
+  "feeds": [
+    {
+      "source": "https://www.tinybird.co/blog",
+      "feed_url": "https://www.tinybird.co/blog/rss.xml",
+      "saved": 10,
+      "title": "Tinybird Blog"
+    }
+  ],
+  "post_count": 10,
+  "fetched": "2026-05-03T23:37:28Z"
+}
