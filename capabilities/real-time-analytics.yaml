@@ -1,282 +1,506 @@
-naftiko: "1.0.0-alpha1"
-
+naftiko: 1.0.0-alpha2
 info:
-  label: "Tinybird Real-Time Analytics"
-  description: >-
-    Workflow capability for real-time data analytics using Tinybird. Combines data
-    ingestion, SQL transformation pipelines, and instant API publishing to support
-    analytics engineers, data platform teams, and application developers building
-    high-concurrency analytics APIs.
+  label: Tinybird Real-Time Analytics
+  description: Workflow capability for real-time data analytics using Tinybird. Combines data ingestion, SQL transformation
+    pipelines, and instant API publishing to support analytics engineers, data platform teams, and application developers
+    building high-concurrency analytics APIs.
   tags:
-    - Analytics
-    - Real-Time
-    - Data Platform
-    - Streaming
-    - SQL
-  created: "2026-05-03"
-  modified: "2026-05-03"
-
+  - Analytics
+  - Real-Time
+  - Data Platform
+  - Streaming
+  - SQL
+  created: '2026-05-03'
+  modified: '2026-05-06'
 binds:
-  - namespace: env
-    keys:
-      TINYBIRD_TOKEN: TINYBIRD_TOKEN
-
+- namespace: env
+  keys:
+    TINYBIRD_TOKEN: TINYBIRD_TOKEN
 capability:
   consumes:
-    - import: tinybird
-      location: ./shared/tinybird.yaml
-
+  - type: http
+    namespace: tinybird
+    baseUri: https://api.tinybird.co
+    description: Tinybird real-time data platform REST API
+    authentication:
+      type: bearer
+      token: '{{TINYBIRD_TOKEN}}'
+    resources:
+    - name: data-sources
+      path: /v0/datasources
+      description: Manage Tinybird data sources
+      operations:
+      - name: list-data-sources
+        method: GET
+        description: List all accessible data sources in the workspace
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-data-source
+        method: POST
+        description: Create, append, or replace a data source
+        inputParameters:
+        - name: mode
+          in: query
+          type: string
+          required: false
+          description: 'Operation mode: create, append, or replace'
+        - name: name
+          in: query
+          type: string
+          required: false
+          description: Name of the data source
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: data-source
+      path: /v0/datasources/{name}
+      description: Manage a specific data source
+      operations:
+      - name: get-data-source
+        method: GET
+        description: Retrieve information and statistics for a specific data source
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          required: true
+          description: Name of the data source
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: delete-data-source
+        method: DELETE
+        description: Drop an entire data source and all its data
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          required: true
+          description: Name of the data source
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: truncate-data-source
+        method: POST
+        description: Remove all data from a data source
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          required: true
+          description: Name of the data source to truncate
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: events
+      path: /v0/events
+      description: Ingest NDJSON events into data sources
+      operations:
+      - name: ingest-events
+        method: POST
+        description: Ingest NDJSON events via HTTP POST
+        inputParameters:
+        - name: name
+          in: query
+          type: string
+          required: true
+          description: Target data source name
+        - name: wait
+          in: query
+          type: boolean
+          required: false
+          description: Wait for ingestion to complete
+        body:
+          type: text
+          data: '{{tools.events_payload}}'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: pipes
+      path: /v0/pipes
+      description: Manage Tinybird transformation pipes
+      operations:
+      - name: list-pipes
+        method: GET
+        description: List all pipes in the workspace
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-pipe
+        method: POST
+        description: Create a new SQL transformation pipe
+        body:
+          type: json
+          data:
+            name: '{{tools.pipe_name}}'
+            description: '{{tools.pipe_description}}'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: pipe
+      path: /v0/pipes/{name}
+      description: Manage a specific pipe
+      operations:
+      - name: get-pipe
+        method: GET
+        description: Retrieve details about a specific pipe
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          required: true
+          description: Pipe name
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: delete-pipe
+        method: DELETE
+        description: Delete a pipe and all its nodes
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          required: true
+          description: Pipe name
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: query
+      path: /v0/sql
+      description: Execute SQL queries against Tinybird data
+      operations:
+      - name: execute-sql-query
+        method: GET
+        description: Execute a SQL query against Tinybird data
+        inputParameters:
+        - name: q
+          in: query
+          type: string
+          required: true
+          description: SQL query string
+        - name: format
+          in: query
+          type: string
+          required: false
+          description: 'Output format: JSON, CSV, NDJSON, Parquet'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: tokens
+      path: /v0/tokens
+      description: Manage Tinybird authentication tokens
+      operations:
+      - name: list-tokens
+        method: GET
+        description: Retrieve all workspace static tokens
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-token
+        method: POST
+        description: Create a new token with specified scopes
+        body:
+          type: json
+          data:
+            name: '{{tools.token_name}}'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: jobs
+      path: /v0/jobs
+      description: Track Tinybird background jobs
+      operations:
+      - name: list-jobs
+        method: GET
+        description: Retrieve job history from the past 48 hours or last 100 jobs
+        inputParameters:
+        - name: status
+          in: query
+          type: string
+          required: false
+          description: 'Filter by status: done, error, working, waiting'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
   exposes:
-    - type: rest
-      port: 8080
-      namespace: tinybird-analytics-api
-      description: "Unified REST API for Tinybird real-time analytics workflows."
-      resources:
-        - path: /v1/data-sources
-          name: data-sources
-          description: "Manage analytics data sources"
-          operations:
-            - method: GET
-              name: list-data-sources
-              description: "List all data sources available for analytics"
-              call: "tinybird.list-data-sources"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: POST
-              name: create-data-source
-              description: "Create a new data source for analytics ingestion"
-              call: "tinybird.create-data-source"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/data-sources/{name}
-          name: data-source
-          description: "Individual data source management"
-          operations:
-            - method: GET
-              name: get-data-source
-              description: "Get statistics and schema for a data source"
-              call: "tinybird.get-data-source"
-              with:
-                name: "rest.name"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: DELETE
-              name: delete-data-source
-              description: "Drop a data source"
-              call: "tinybird.delete-data-source"
-              with:
-                name: "rest.name"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/events
-          name: events
-          description: "Stream events into analytics data sources"
-          operations:
-            - method: POST
-              name: ingest-events
-              description: "Ingest NDJSON events for real-time analytics"
-              call: "tinybird.ingest-events"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/pipes
-          name: pipes
-          description: "SQL transformation pipelines"
-          operations:
-            - method: GET
-              name: list-pipes
-              description: "List all data transformation pipes"
-              call: "tinybird.list-pipes"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: POST
-              name: create-pipe
-              description: "Create a new SQL transformation pipe"
-              call: "tinybird.create-pipe"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/pipes/{name}
-          name: pipe
-          description: "Individual pipe management"
-          operations:
-            - method: GET
-              name: get-pipe
-              description: "Get pipe details and transformation nodes"
-              call: "tinybird.get-pipe"
-              with:
-                name: "rest.name"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: DELETE
-              name: delete-pipe
-              description: "Delete a transformation pipe"
-              call: "tinybird.delete-pipe"
-              with:
-                name: "rest.name"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/query
-          name: query
-          description: "Ad-hoc SQL analytics queries"
-          operations:
-            - method: GET
-              name: execute-sql-query
-              description: "Execute a SQL query for analytics exploration"
-              call: "tinybird.execute-sql-query"
-              with:
-                q: "rest.q"
-                format: "rest.format"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/tokens
-          name: tokens
-          description: "Authentication token management"
-          operations:
-            - method: GET
-              name: list-tokens
-              description: "List all API tokens"
-              call: "tinybird.list-tokens"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: POST
-              name: create-token
-              description: "Create a new scoped API token"
-              call: "tinybird.create-token"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/jobs
-          name: jobs
-          description: "Background job monitoring"
-          operations:
-            - method: GET
-              name: list-jobs
-              description: "Monitor background jobs and import status"
-              call: "tinybird.list-jobs"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-    - type: mcp
-      port: 9090
-      namespace: tinybird-analytics-mcp
-      transport: http
-      description: "MCP server for AI-assisted real-time analytics with Tinybird."
-      tools:
-        - name: list-data-sources
-          description: "List all Tinybird data sources in the workspace for analytics exploration"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "tinybird.list-data-sources"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: get-data-source
-          description: "Get schema and row statistics for a specific Tinybird data source"
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "tinybird.get-data-source"
-          with:
-            name: "tools.name"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: ingest-events
-          description: "Stream NDJSON events into a Tinybird data source for real-time ingestion"
-          hints:
-            readOnly: false
-            destructive: false
-          call: "tinybird.ingest-events"
-          with:
-            name: "tools.name"
-            events_payload: "tools.events_payload"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-pipes
-          description: "List all SQL transformation pipes and published API endpoints in Tinybird"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "tinybird.list-pipes"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: get-pipe
-          description: "Inspect the SQL nodes and configuration of a Tinybird transformation pipe"
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "tinybird.get-pipe"
-          with:
-            name: "tools.name"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: execute-sql-query
-          description: "Run an ad-hoc SQL query against Tinybird data sources for analytics exploration"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "tinybird.execute-sql-query"
-          with:
-            q: "tools.q"
-            format: "tools.format"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-tokens
-          description: "List all Tinybird authentication tokens with their scopes"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "tinybird.list-tokens"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: create-token
-          description: "Create a new Tinybird API token with specific scope permissions"
-          hints:
-            readOnly: false
-            destructive: false
-          call: "tinybird.create-token"
-          with:
-            token_name: "tools.token_name"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-jobs
-          description: "Monitor Tinybird background jobs including imports and schema changes"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "tinybird.list-jobs"
-          with:
-            status: "tools.status"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: delete-data-source
-          description: "Drop a Tinybird data source and all its stored data permanently"
-          hints:
-            readOnly: false
-            destructive: true
-            idempotent: true
-          call: "tinybird.delete-data-source"
-          with:
-            name: "tools.name"
-          outputParameters:
-            - type: object
-              mapping: "$."
+  - type: rest
+    port: 8080
+    namespace: tinybird-analytics-api
+    description: Unified REST API for Tinybird real-time analytics workflows.
+    resources:
+    - path: /v1/data-sources
+      name: data-sources
+      description: Manage analytics data sources
+      operations:
+      - method: GET
+        name: list-data-sources
+        description: List all data sources available for analytics
+        call: tinybird.list-data-sources
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: create-data-source
+        description: Create a new data source for analytics ingestion
+        call: tinybird.create-data-source
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/data-sources/{name}
+      name: data-source
+      description: Individual data source management
+      operations:
+      - method: GET
+        name: get-data-source
+        description: Get statistics and schema for a data source
+        call: tinybird.get-data-source
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: delete-data-source
+        description: Drop a data source
+        call: tinybird.delete-data-source
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/events
+      name: events
+      description: Stream events into analytics data sources
+      operations:
+      - method: POST
+        name: ingest-events
+        description: Ingest NDJSON events for real-time analytics
+        call: tinybird.ingest-events
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/pipes
+      name: pipes
+      description: SQL transformation pipelines
+      operations:
+      - method: GET
+        name: list-pipes
+        description: List all data transformation pipes
+        call: tinybird.list-pipes
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: create-pipe
+        description: Create a new SQL transformation pipe
+        call: tinybird.create-pipe
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/pipes/{name}
+      name: pipe
+      description: Individual pipe management
+      operations:
+      - method: GET
+        name: get-pipe
+        description: Get pipe details and transformation nodes
+        call: tinybird.get-pipe
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: delete-pipe
+        description: Delete a transformation pipe
+        call: tinybird.delete-pipe
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/query
+      name: query
+      description: Ad-hoc SQL analytics queries
+      operations:
+      - method: GET
+        name: execute-sql-query
+        description: Execute a SQL query for analytics exploration
+        call: tinybird.execute-sql-query
+        with:
+          q: rest.q
+          format: rest.format
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/tokens
+      name: tokens
+      description: Authentication token management
+      operations:
+      - method: GET
+        name: list-tokens
+        description: List all API tokens
+        call: tinybird.list-tokens
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: create-token
+        description: Create a new scoped API token
+        call: tinybird.create-token
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/jobs
+      name: jobs
+      description: Background job monitoring
+      operations:
+      - method: GET
+        name: list-jobs
+        description: Monitor background jobs and import status
+        call: tinybird.list-jobs
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: tinybird-analytics-mcp
+    transport: http
+    description: MCP server for AI-assisted real-time analytics with Tinybird.
+    tools:
+    - name: list-data-sources
+      description: List all Tinybird data sources in the workspace for analytics exploration
+      hints:
+        readOnly: true
+        openWorld: true
+      call: tinybird.list-data-sources
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-data-source
+      description: Get schema and row statistics for a specific Tinybird data source
+      hints:
+        readOnly: true
+        openWorld: false
+      call: tinybird.get-data-source
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: ingest-events
+      description: Stream NDJSON events into a Tinybird data source for real-time ingestion
+      hints:
+        readOnly: false
+        destructive: false
+      call: tinybird.ingest-events
+      with:
+        name: tools.name
+        events_payload: tools.events_payload
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-pipes
+      description: List all SQL transformation pipes and published API endpoints in Tinybird
+      hints:
+        readOnly: true
+        openWorld: true
+      call: tinybird.list-pipes
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-pipe
+      description: Inspect the SQL nodes and configuration of a Tinybird transformation pipe
+      hints:
+        readOnly: true
+        openWorld: false
+      call: tinybird.get-pipe
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: execute-sql-query
+      description: Run an ad-hoc SQL query against Tinybird data sources for analytics exploration
+      hints:
+        readOnly: true
+        openWorld: true
+      call: tinybird.execute-sql-query
+      with:
+        q: tools.q
+        format: tools.format
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-tokens
+      description: List all Tinybird authentication tokens with their scopes
+      hints:
+        readOnly: true
+        openWorld: true
+      call: tinybird.list-tokens
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-token
+      description: Create a new Tinybird API token with specific scope permissions
+      hints:
+        readOnly: false
+        destructive: false
+      call: tinybird.create-token
+      with:
+        token_name: tools.token_name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-jobs
+      description: Monitor Tinybird background jobs including imports and schema changes
+      hints:
+        readOnly: true
+        openWorld: true
+      call: tinybird.list-jobs
+      with:
+        status: tools.status
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-data-source
+      description: Drop a Tinybird data source and all its stored data permanently
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: tinybird.delete-data-source
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
