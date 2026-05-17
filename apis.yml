@@ -41,7 +41,7 @@ apis:
       - type: OpenAPI
         url: >-
           https://raw.githubusercontent.com/api-evangelist/tinybird/refs/heads/main/openapi/tinybird-openapi.yml
-      - type: Getting Started
+      - type: GettingStarted
         url: https://www.tinybird.co/docs/get-started
       - type: Authentication
         url: https://www.tinybird.co/docs/api-reference/token-api
@@ -98,9 +98,9 @@ common:
     url: https://www.tinybird.co/
   - type: Documentation
     url: https://www.tinybird.co/docs/api-reference
-  - type: Getting Started
+  - type: GettingStarted
     url: https://www.tinybird.co/docs/get-started
-  - type: Sign Up
+  - type: SignUp
     url: https://www.tinybird.co/signup
   - type: Blog
     url: https://www.tinybird.co/blog
@@ -119,7 +119,7 @@ common:
   - type: NaftikoCapability
     url: >-
       https://raw.githubusercontent.com/api-evangelist/tinybird/refs/heads/main/capabilities/real-time-analytics.yaml
-  - type: GitHub Organization
+  - type: GitHubOrganization
     url: https://github.com/tinybirdco
 maintainers:
   - FN: Kin Lane
