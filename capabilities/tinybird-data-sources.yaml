@@ -1,0 +1,386 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Tinybird API — Data Sources
+  description: 'Tinybird API — Data Sources. 8 operations. Lead operation: List Data Sources. Self-contained Naftiko capability
+    covering one Tinybird business surface.'
+  tags:
+  - Tinybird
+  - Data Sources
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TINYBIRD_API_KEY: TINYBIRD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: tinybird-data-sources
+    baseUri: https://api.tinybird.co
+    description: Tinybird API — Data Sources business capability. Self-contained, no shared references.
+    resources:
+    - name: v0-datasources
+      path: /v0/datasources/
+      operations:
+      - name: listdatasources
+        method: GET
+        description: List Data Sources
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: attrs
+          in: query
+          type: string
+          description: Comma-separated list of attributes to include in response
+      - name: createdatasource
+        method: POST
+        description: Create Data Source
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: mode
+          in: query
+          type: string
+          description: Operation mode - create, append, or replace
+        - name: name
+          in: query
+          type: string
+          description: Name of the data source
+        - name: format
+          in: query
+          type: string
+          description: Format of the data being ingested
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: v0-datasources-name
+      path: /v0/datasources/{name}
+      operations:
+      - name: getdatasource
+        method: GET
+        description: Get Data Source
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the data source
+          required: true
+      - name: updatedatasource
+        method: PUT
+        description: Update Data Source
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deletedatasource
+        method: DELETE
+        description: Delete Data Source
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          required: true
+    - name: v0-datasources-name-alter
+      path: /v0/datasources/{name}/alter
+      operations:
+      - name: alterdatasource
+        method: POST
+        description: Alter Data Source
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: v0-datasources-name-delete
+      path: /v0/datasources/{name}/delete
+      operations:
+      - name: deletedatasourcerows
+        method: POST
+        description: Delete Data Source Rows
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: v0-datasources-name-truncate
+      path: /v0/datasources/{name}/truncate
+      operations:
+      - name: truncatedatasource
+        method: POST
+        description: Truncate Data Source
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.TINYBIRD_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: tinybird-data-sources-rest
+    port: 8080
+    description: REST adapter for Tinybird API — Data Sources. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/v0/datasources
+      name: v0-datasources
+      description: REST surface for v0-datasources.
+      operations:
+      - method: GET
+        name: listdatasources
+        description: List Data Sources
+        call: tinybird-data-sources.listdatasources
+        with:
+          attrs: rest.attrs
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createdatasource
+        description: Create Data Source
+        call: tinybird-data-sources.createdatasource
+        with:
+          mode: rest.mode
+          name: rest.name
+          format: rest.format
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v0/datasources/{name}
+      name: v0-datasources-name
+      description: REST surface for v0-datasources-name.
+      operations:
+      - method: GET
+        name: getdatasource
+        description: Get Data Source
+        call: tinybird-data-sources.getdatasource
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatedatasource
+        description: Update Data Source
+        call: tinybird-data-sources.updatedatasource
+        with:
+          name: rest.name
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletedatasource
+        description: Delete Data Source
+        call: tinybird-data-sources.deletedatasource
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v0/datasources/{name}/alter
+      name: v0-datasources-name-alter
+      description: REST surface for v0-datasources-name-alter.
+      operations:
+      - method: POST
+        name: alterdatasource
+        description: Alter Data Source
+        call: tinybird-data-sources.alterdatasource
+        with:
+          name: rest.name
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v0/datasources/{name}/delete
+      name: v0-datasources-name-delete
+      description: REST surface for v0-datasources-name-delete.
+      operations:
+      - method: POST
+        name: deletedatasourcerows
+        description: Delete Data Source Rows
+        call: tinybird-data-sources.deletedatasourcerows
+        with:
+          name: rest.name
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v0/datasources/{name}/truncate
+      name: v0-datasources-name-truncate
+      description: REST surface for v0-datasources-name-truncate.
+      operations:
+      - method: POST
+        name: truncatedatasource
+        description: Truncate Data Source
+        call: tinybird-data-sources.truncatedatasource
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: tinybird-data-sources-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Tinybird API — Data Sources. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: list-data-sources
+      description: List Data Sources
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: tinybird-data-sources.listdatasources
+      with:
+        attrs: tools.attrs
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-data-source
+      description: Create Data Source
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: tinybird-data-sources.createdatasource
+      with:
+        mode: tools.mode
+        name: tools.name
+        format: tools.format
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-data-source
+      description: Get Data Source
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: tinybird-data-sources.getdatasource
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-data-source
+      description: Update Data Source
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: tinybird-data-sources.updatedatasource
+      with:
+        name: tools.name
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-data-source
+      description: Delete Data Source
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: tinybird-data-sources.deletedatasource
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: alter-data-source
+      description: Alter Data Source
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: tinybird-data-sources.alterdatasource
+      with:
+        name: tools.name
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-data-source-rows
+      description: Delete Data Source Rows
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: tinybird-data-sources.deletedatasourcerows
+      with:
+        name: tools.name
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: truncate-data-source
+      description: Truncate Data Source
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: tinybird-data-sources.truncatedatasource
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.

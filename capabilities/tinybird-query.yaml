@@ -1,0 +1,121 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Tinybird API — Query
+  description: 'Tinybird API — Query. 2 operations. Lead operation: Execute SQL Query (GET). Self-contained Naftiko capability
+    covering one Tinybird business surface.'
+  tags:
+  - Tinybird
+  - Query
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TINYBIRD_API_KEY: TINYBIRD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: tinybird-query
+    baseUri: https://api.tinybird.co
+    description: Tinybird API — Query business capability. Self-contained, no shared references.
+    resources:
+    - name: v0-sql
+      path: /v0/sql
+      operations:
+      - name: querysql
+        method: GET
+        description: Execute SQL Query (GET)
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: q
+          in: query
+          type: string
+          description: SQL query string to execute
+          required: true
+        - name: format
+          in: query
+          type: string
+          description: Output format
+      - name: querysqlpost
+        method: POST
+        description: Execute SQL Query (POST)
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: bearer
+      token: '{{env.TINYBIRD_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: tinybird-query-rest
+    port: 8080
+    description: REST adapter for Tinybird API — Query. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/v0/sql
+      name: v0-sql
+      description: REST surface for v0-sql.
+      operations:
+      - method: GET
+        name: querysql
+        description: Execute SQL Query (GET)
+        call: tinybird-query.querysql
+        with:
+          q: rest.q
+          format: rest.format
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: querysqlpost
+        description: Execute SQL Query (POST)
+        call: tinybird-query.querysqlpost
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: tinybird-query-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Tinybird API — Query. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: execute-sql-query-get
+      description: Execute SQL Query (GET)
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: tinybird-query.querysql
+      with:
+        q: tools.q
+        format: tools.format
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: execute-sql-query-post
+      description: Execute SQL Query (POST)
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: tinybird-query.querysqlpost
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

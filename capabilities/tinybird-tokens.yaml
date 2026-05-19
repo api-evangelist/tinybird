@@ -1,0 +1,262 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Tinybird API — Tokens
+  description: 'Tinybird API — Tokens. 6 operations. Lead operation: List Tokens. Self-contained Naftiko capability covering
+    one Tinybird business surface.'
+  tags:
+  - Tinybird
+  - Tokens
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TINYBIRD_API_KEY: TINYBIRD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: tinybird-tokens
+    baseUri: https://api.tinybird.co
+    description: Tinybird API — Tokens business capability. Self-contained, no shared references.
+    resources:
+    - name: v0-tokens
+      path: /v0/tokens/
+      operations:
+      - name: listtokens
+        method: GET
+        description: List Tokens
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createtoken
+        method: POST
+        description: Create Token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: v0-tokens-tokenId
+      path: /v0/tokens/{tokenId}
+      operations:
+      - name: gettoken
+        method: GET
+        description: Get Token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: tokenId
+          in: path
+          type: string
+          required: true
+      - name: updatetoken
+        method: PUT
+        description: Update Token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: tokenId
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deletetoken
+        method: DELETE
+        description: Delete Token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: tokenId
+          in: path
+          type: string
+          required: true
+    - name: v0-tokens-tokenId-refresh
+      path: /v0/tokens/{tokenId}/refresh
+      operations:
+      - name: refreshtoken
+        method: POST
+        description: Refresh Token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: tokenId
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.TINYBIRD_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: tinybird-tokens-rest
+    port: 8080
+    description: REST adapter for Tinybird API — Tokens. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/v0/tokens
+      name: v0-tokens
+      description: REST surface for v0-tokens.
+      operations:
+      - method: GET
+        name: listtokens
+        description: List Tokens
+        call: tinybird-tokens.listtokens
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createtoken
+        description: Create Token
+        call: tinybird-tokens.createtoken
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v0/tokens/{tokenid}
+      name: v0-tokens-tokenid
+      description: REST surface for v0-tokens-tokenId.
+      operations:
+      - method: GET
+        name: gettoken
+        description: Get Token
+        call: tinybird-tokens.gettoken
+        with:
+          tokenId: rest.tokenId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatetoken
+        description: Update Token
+        call: tinybird-tokens.updatetoken
+        with:
+          tokenId: rest.tokenId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletetoken
+        description: Delete Token
+        call: tinybird-tokens.deletetoken
+        with:
+          tokenId: rest.tokenId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v0/tokens/{tokenid}/refresh
+      name: v0-tokens-tokenid-refresh
+      description: REST surface for v0-tokens-tokenId-refresh.
+      operations:
+      - method: POST
+        name: refreshtoken
+        description: Refresh Token
+        call: tinybird-tokens.refreshtoken
+        with:
+          tokenId: rest.tokenId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: tinybird-tokens-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Tinybird API — Tokens. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-tokens
+      description: List Tokens
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: tinybird-tokens.listtokens
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-token
+      description: Create Token
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: tinybird-tokens.createtoken
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-token
+      description: Get Token
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: tinybird-tokens.gettoken
+      with:
+        tokenId: tools.tokenId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-token
+      description: Update Token
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: tinybird-tokens.updatetoken
+      with:
+        tokenId: tools.tokenId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-token
+      description: Delete Token
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: tinybird-tokens.deletetoken
+      with:
+        tokenId: tools.tokenId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: refresh-token
+      description: Refresh Token
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: tinybird-tokens.refreshtoken
+      with:
+        tokenId: tools.tokenId
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,152 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Tinybird API — Organizations
+  description: 'Tinybird API — Organizations. 3 operations. Lead operation: List Organizations. Self-contained Naftiko capability
+    covering one Tinybird business surface.'
+  tags:
+  - Tinybird
+  - Organizations
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TINYBIRD_API_KEY: TINYBIRD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: tinybird-organizations
+    baseUri: https://api.tinybird.co
+    description: Tinybird API — Organizations business capability. Self-contained, no shared references.
+    resources:
+    - name: v0-organizations
+      path: /v0/organizations
+      operations:
+      - name: listorganizations
+        method: GET
+        description: List Organizations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v0-organizations-orgId-members
+      path: /v0/organizations/{orgId}/members
+      operations:
+      - name: listorganizationmembers
+        method: GET
+        description: List Organization Members
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: orgId
+          in: path
+          type: string
+          required: true
+    - name: v0-organizations-orgId-workspaces
+      path: /v0/organizations/{orgId}/workspaces
+      operations:
+      - name: listorganizationworkspaces
+        method: GET
+        description: List Organization Workspaces
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: orgId
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.TINYBIRD_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: tinybird-organizations-rest
+    port: 8080
+    description: REST adapter for Tinybird API — Organizations. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/v0/organizations
+      name: v0-organizations
+      description: REST surface for v0-organizations.
+      operations:
+      - method: GET
+        name: listorganizations
+        description: List Organizations
+        call: tinybird-organizations.listorganizations
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v0/organizations/{orgid}/members
+      name: v0-organizations-orgid-members
+      description: REST surface for v0-organizations-orgId-members.
+      operations:
+      - method: GET
+        name: listorganizationmembers
+        description: List Organization Members
+        call: tinybird-organizations.listorganizationmembers
+        with:
+          orgId: rest.orgId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v0/organizations/{orgid}/workspaces
+      name: v0-organizations-orgid-workspaces
+      description: REST surface for v0-organizations-orgId-workspaces.
+      operations:
+      - method: GET
+        name: listorganizationworkspaces
+        description: List Organization Workspaces
+        call: tinybird-organizations.listorganizationworkspaces
+        with:
+          orgId: rest.orgId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: tinybird-organizations-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Tinybird API — Organizations. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: list-organizations
+      description: List Organizations
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: tinybird-organizations.listorganizations
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-organization-members
+      description: List Organization Members
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: tinybird-organizations.listorganizationmembers
+      with:
+        orgId: tools.orgId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-organization-workspaces
+      description: List Organization Workspaces
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: tinybird-organizations.listorganizationworkspaces
+      with:
+        orgId: tools.orgId
+      outputParameters:
+      - type: object
+        mapping: $.
