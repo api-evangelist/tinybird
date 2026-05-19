@@ -16,7 +16,7 @@ tags:
   - SQL
   - Streaming
 created: '2025-01-08'
-modified: '2026-05-03'
+modified: '2026-05-19'
 url: https://raw.githubusercontent.com/api-evangelist/tinybird/refs/heads/main/apis.yml
 specificationVersion: '0.19'
 apis:
@@ -121,6 +121,12 @@ common:
       https://raw.githubusercontent.com/api-evangelist/tinybird/refs/heads/main/capabilities/real-time-analytics.yaml
   - type: GitHubOrganization
     url: https://github.com/tinybirdco
+  - name: MCP Server
+    url: https://github.com/tinybirdco/mcp-tinybird
+    type: MCPServer
+  - name: Agent Skills
+    url: https://github.com/tinybirdco/tinybird-agent-skills
+    type: AgentSkill
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
