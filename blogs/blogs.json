@@ -2,12 +2,17 @@
   "repo": "tinybird",
   "feeds": [
     {
-      "source": "https://www.tinybird.co/blog",
+      "source": "https://www.tinybird.co/blog/rss.xml",
       "feed_url": "https://www.tinybird.co/blog/rss.xml",
-      "title": "Tinybird Blog",
-      "saved": 43
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    },
+    {
+      "source": "https://www.tinybird.co/signup",
+      "error": "HTTPError"
     }
   ],
-  "post_count": 54,
-  "fetched": "2026-05-17T20:20:35Z"
+  "post_count": 57,
+  "fetched": "2026-06-01T23:35:02Z"
 }
