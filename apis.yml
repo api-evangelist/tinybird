@@ -1,8 +1,9 @@
 aid: tinybird
 name: Tinybird
-description: Tinybird is a real-time data platform that allows you to ingest, process, and expose data through low-latency,
-  high-concurrency APIs. The platform supports real-time analytics at scale with a SQL-based transformation layer and instant
-  REST API endpoint publishing.
+description: >-
+  Tinybird is a real-time data platform that allows you to ingest, process, and expose data through low-latency,
+  high-concurrency APIs. The platform supports real-time analytics at scale with a SQL-based transformation layer and
+  instant REST API endpoint publishing.
 type: Index
 position: Consumer
 access: 3rd-Party
@@ -20,54 +21,37 @@ specificationVersion: '0.19'
 apis:
   - aid: tinybird:tinybird
     name: Tinybird API
-    description: Tinybird provides a real-time data platform with comprehensive REST APIs for managing data sources, executing
-      SQL queries, managing pipes and transformations, ingesting events, managing authentication tokens, monitoring jobs, and
-      administering organizations and workspaces.
+    description: >-
+      Tinybird provides a real-time data platform with comprehensive REST APIs for managing data sources, executing SQL
+      queries, managing pipes and transformations, ingesting events, managing authentication tokens, monitoring jobs,
+      and administering organizations and workspaces.
     humanURL: https://www.tinybird.co/docs/api-reference
     baseURL: https://api.tinybird.co
     tags:
-    - Analytics
-    - Data
-    - Real-Time
-    - SQL
-    - Streaming
+      - Analytics
+      - Data
+      - Real-Time
+      - SQL
+      - Streaming
     properties:
-    - type: Documentation
-      url: https://www.tinybird.co/docs/api-reference
-    - type: OpenAPI
-      url: https://raw.githubusercontent.com/api-evangelist/tinybird/refs/heads/main/openapi/tinybird-openapi.yml
-    - type: GettingStarted
-      url: https://www.tinybird.co/docs/get-started
-    - type: Authentication
-      url: https://www.tinybird.co/docs/api-reference/token-api
-    - type: JSONSchema
-      url: https://raw.githubusercontent.com/api-evangelist/tinybird/refs/heads/main/json-schema/tinybird-data-source-schema.json
-    - type: JSONStructure
-      url: https://raw.githubusercontent.com/api-evangelist/tinybird/refs/heads/main/json-structure/tinybird-data-source-structure.json
-    - type: JSONLDContext
-      url: https://raw.githubusercontent.com/api-evangelist/tinybird/refs/heads/main/json-ld/tinybird-context.jsonld
-    - type: SpectralRules
-      url: https://raw.githubusercontent.com/api-evangelist/tinybird/refs/heads/main/rules/tinybird-rules.yml
-    - type: NaftikoCapability
-      url: capabilities/tinybird-analyze.yaml
-    - type: NaftikoCapability
-      url: capabilities/tinybird-data-sources.yaml
-    - type: NaftikoCapability
-      url: capabilities/tinybird-environment-variables.yaml
-    - type: NaftikoCapability
-      url: capabilities/tinybird-events.yaml
-    - type: NaftikoCapability
-      url: capabilities/tinybird-jobs.yaml
-    - type: NaftikoCapability
-      url: capabilities/tinybird-organizations.yaml
-    - type: NaftikoCapability
-      url: capabilities/tinybird-pipes.yaml
-    - type: NaftikoCapability
-      url: capabilities/tinybird-query.yaml
-    - type: NaftikoCapability
-      url: capabilities/tinybird-sink-pipes.yaml
-    - type: NaftikoCapability
-      url: capabilities/tinybird-tokens.yaml
+      - type: Documentation
+        url: https://www.tinybird.co/docs/api-reference
+      - type: OpenAPI
+        url: https://raw.githubusercontent.com/api-evangelist/tinybird/refs/heads/main/openapi/tinybird-openapi.yml
+      - type: GettingStarted
+        url: https://www.tinybird.co/docs/get-started
+      - type: Authentication
+        url: https://www.tinybird.co/docs/api-reference/token-api
+      - type: JSONSchema
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/tinybird/refs/heads/main/json-schema/tinybird-data-source-schema.json
+      - type: JSONStructure
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/tinybird/refs/heads/main/json-structure/tinybird-data-source-structure.json
+      - type: JSONLDContext
+        url: https://raw.githubusercontent.com/api-evangelist/tinybird/refs/heads/main/json-ld/tinybird-context.jsonld
+      - type: SpectralRules
+        url: https://raw.githubusercontent.com/api-evangelist/tinybird/refs/heads/main/rules/tinybird-rules.yml
 features:
   - Real-time data ingestion via Events API
   - SQL-based data transformation with Pipes
