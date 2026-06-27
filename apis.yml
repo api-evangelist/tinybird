@@ -94,7 +94,7 @@ common:
     url: https://www.tinybird.co/docs/api-reference
   - type: GettingStarted
     url: https://www.tinybird.co/docs/get-started
-  - type: SignUp
+  - type: Signup
     url: https://www.tinybird.co/signup
   - type: Blog
     url: https://www.tinybird.co/blog
@@ -113,7 +113,7 @@ common:
     type: MCPServer
   - name: Agent Skills
     url: https://github.com/tinybirdco/tinybird-agent-skills
-    type: AgentSkill
+    type: AgentSkills
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
