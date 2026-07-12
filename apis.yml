@@ -86,6 +86,12 @@ solutions:
   - Data pipeline management
   - Multi-tenant data analytics
 common:
+  - type: TrustCenter
+    url: security/tinybird-trust-center.yml
+  - type: DomainSecurity
+    url: security/tinybird-domain-security.yml
+  - type: Authentication
+    url: authentication/tinybird-authentication.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/tinybird-co
   - type: Website

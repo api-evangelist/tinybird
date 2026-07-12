@@ -1,0 +1,17 @@
+generated: '2026-07-11'
+method: searched
+probe: true
+source: https://www.tinybird.co/security
+url: https://www.tinybird.co/security
+certifications:
+- SOC 2
+- HIPAA
+- GDPR
+evidence:
+- source: https://www.tinybird.co/security
+  keywords:
+  - soc 2
+  - soc2
+  - hipaa
+  - trust center
+  - gdpr
