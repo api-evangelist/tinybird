@@ -5,7 +5,7 @@
       "source": "https://www.tinybird.co/blog/rss.xml",
       "feed_url": "https://www.tinybird.co/blog/rss.xml",
       "title": "",
-      "saved": 5,
+      "saved": 0,
       "method": "feed"
     },
     {
@@ -13,6 +13,6 @@
       "error": "HTTPError"
     }
   ],
-  "post_count": 65,
-  "fetched": "2026-06-27T12:03:07Z"
+  "post_count": 66,
+  "fetched": "2026-07-11T11:50:51Z"
 }
