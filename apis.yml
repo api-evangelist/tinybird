@@ -86,6 +86,8 @@ solutions:
   - Data pipeline management
   - Multi-tenant data analytics
 common:
+  - type: AgenticAccess
+    url: agentic-access/tinybird-agentic-access.yml
   - type: TrustCenter
     url: security/tinybird-trust-center.yml
   - type: DomainSecurity
