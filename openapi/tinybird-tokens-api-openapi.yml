@@ -1,0 +1,203 @@
+openapi: 3.0.3
+info:
+  title: Tinybird Analyze Tokens API
+  description: Tinybird is a real-time data platform that allows you to ingest, process, and expose data through low-latency, high-concurrency APIs. The Tinybird API provides endpoints for managing data sources, pipes, queries, tokens, jobs, organizations, events, environment variables, and sink pipes.
+  version: v0
+  contact:
+    name: Tinybird Support
+    url: https://www.tinybird.co/docs
+  x-logo:
+    url: https://www.tinybird.co/logo.png
+servers:
+- url: https://api.tinybird.co
+  description: Europe (Frankfurt) - Default
+- url: https://api.us-east.tinybird.co
+  description: US East (Virginia)
+- url: https://api.europe-west2.gcp.tinybird.co
+  description: Europe (London)
+- url: https://api.northamerica-northeast2.gcp.tinybird.co
+  description: North America (Toronto)
+security:
+- bearerAuth: []
+tags:
+- name: Tokens
+  description: Manage authentication tokens
+paths:
+  /v0/tokens/:
+    get:
+      operationId: listTokens
+      summary: List Tokens
+      description: Retrieve all workspace static tokens.
+      tags:
+      - Tokens
+      responses:
+        '200':
+          description: List of tokens
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenList'
+    post:
+      operationId: createToken
+      summary: Create Token
+      description: Create a new static or JWT token with specified scopes and permissions.
+      tags:
+      - Tokens
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenCreate'
+      responses:
+        '200':
+          description: Token created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Token'
+  /v0/tokens/{tokenId}:
+    get:
+      operationId: getToken
+      summary: Get Token
+      description: Fetch information about a particular static token.
+      tags:
+      - Tokens
+      parameters:
+      - name: tokenId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Token details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Token'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateToken
+      summary: Update Token
+      description: Modify an existing static token's properties and scopes.
+      tags:
+      - Tokens
+      parameters:
+      - name: tokenId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenUpdate'
+      responses:
+        '200':
+          description: Token updated successfully
+    delete:
+      operationId: deleteToken
+      summary: Delete Token
+      description: Remove a static token, immediately revoking its access.
+      tags:
+      - Tokens
+      parameters:
+      - name: tokenId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Token deleted successfully
+  /v0/tokens/{tokenId}/refresh:
+    post:
+      operationId: refreshToken
+      summary: Refresh Token
+      description: Refresh a static token's value while preserving all other attributes.
+      tags:
+      - Tokens
+      parameters:
+      - name: tokenId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Token refreshed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Token'
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        documentation:
+          type: string
+    TokenList:
+      type: object
+      properties:
+        tokens:
+          type: array
+          items:
+            $ref: '#/components/schemas/Token'
+    TokenCreate:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        scopes:
+          type: array
+          items:
+            type: object
+    TokenUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        scopes:
+          type: array
+          items:
+            type: object
+    Token:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        token:
+          type: string
+        scopes:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+              resource:
+                type: string
+        created_at:
+          type: string
+          format: date-time
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Tinybird authentication token

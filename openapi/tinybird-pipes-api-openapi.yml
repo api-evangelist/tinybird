@@ -1,0 +1,313 @@
+openapi: 3.0.3
+info:
+  title: Tinybird Analyze Pipes API
+  description: Tinybird is a real-time data platform that allows you to ingest, process, and expose data through low-latency, high-concurrency APIs. The Tinybird API provides endpoints for managing data sources, pipes, queries, tokens, jobs, organizations, events, environment variables, and sink pipes.
+  version: v0
+  contact:
+    name: Tinybird Support
+    url: https://www.tinybird.co/docs
+  x-logo:
+    url: https://www.tinybird.co/logo.png
+servers:
+- url: https://api.tinybird.co
+  description: Europe (Frankfurt) - Default
+- url: https://api.us-east.tinybird.co
+  description: US East (Virginia)
+- url: https://api.europe-west2.gcp.tinybird.co
+  description: Europe (London)
+- url: https://api.northamerica-northeast2.gcp.tinybird.co
+  description: North America (Toronto)
+security:
+- bearerAuth: []
+tags:
+- name: Pipes
+  description: Manage pipes, API endpoints, and materialized views
+paths:
+  /v0/pipes/:
+    get:
+      operationId: listPipes
+      summary: List Pipes
+      description: List all pipes in the workspace.
+      tags:
+      - Pipes
+      responses:
+        '200':
+          description: List of pipes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PipeList'
+    post:
+      operationId: createPipe
+      summary: Create Pipe
+      description: Create a new pipe with SQL transformation nodes.
+      tags:
+      - Pipes
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PipeCreate'
+      responses:
+        '200':
+          description: Pipe created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pipe'
+  /v0/pipes/{name}:
+    get:
+      operationId: getPipe
+      summary: Get Pipe
+      description: Retrieve details about a specific pipe.
+      tags:
+      - Pipes
+      parameters:
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Pipe details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pipe'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updatePipe
+      summary: Update Pipe
+      description: Update pipe attributes.
+      tags:
+      - Pipes
+      parameters:
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PipeUpdate'
+      responses:
+        '200':
+          description: Pipe updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pipe'
+    delete:
+      operationId: deletePipe
+      summary: Delete Pipe
+      description: Delete a pipe and all its nodes.
+      tags:
+      - Pipes
+      parameters:
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Pipe deleted successfully
+  /v0/pipes/{name}/nodes:
+    post:
+      operationId: createPipeNode
+      summary: Create Pipe Node
+      description: Add a new SQL node to an existing pipe.
+      tags:
+      - Pipes
+      parameters:
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PipeNodeCreate'
+      responses:
+        '200':
+          description: Node created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PipeNode'
+  /v0/pipes/{name}/nodes/{nodeId}:
+    put:
+      operationId: updatePipeNode
+      summary: Update Pipe Node
+      description: Update an existing pipe node's SQL or description.
+      tags:
+      - Pipes
+      parameters:
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: nodeId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PipeNodeUpdate'
+      responses:
+        '200':
+          description: Node updated successfully
+    delete:
+      operationId: deletePipeNode
+      summary: Delete Pipe Node
+      description: Delete a specific node from a pipe.
+      tags:
+      - Pipes
+      parameters:
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: nodeId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Node deleted successfully
+  /v0/pipes/{name}/explain:
+    get:
+      operationId: explainPipe
+      summary: Explain Pipe Query
+      description: Get the query execution plan for a pipe.
+      tags:
+      - Pipes
+      parameters:
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Query execution plan
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  schemas:
+    PipeNode:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        sql:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+    PipeNodeUpdate:
+      type: object
+      properties:
+        sql:
+          type: string
+        description:
+          type: string
+    PipeList:
+      type: object
+      properties:
+        pipes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Pipe'
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        documentation:
+          type: string
+    PipeUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+    PipeNodeCreate:
+      type: object
+      required:
+      - sql
+      properties:
+        name:
+          type: string
+        sql:
+          type: string
+        description:
+          type: string
+    PipeCreate:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        nodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/PipeNodeCreate'
+    Pipe:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        nodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/PipeNode'
+        type:
+          type: string
+          enum:
+          - standard
+          - materialized
+          - sink
+          - copy
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Tinybird authentication token

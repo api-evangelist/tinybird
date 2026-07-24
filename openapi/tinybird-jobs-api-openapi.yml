@@ -1,0 +1,129 @@
+openapi: 3.0.3
+info:
+  title: Tinybird Analyze Jobs API
+  description: Tinybird is a real-time data platform that allows you to ingest, process, and expose data through low-latency, high-concurrency APIs. The Tinybird API provides endpoints for managing data sources, pipes, queries, tokens, jobs, organizations, events, environment variables, and sink pipes.
+  version: v0
+  contact:
+    name: Tinybird Support
+    url: https://www.tinybird.co/docs
+  x-logo:
+    url: https://www.tinybird.co/logo.png
+servers:
+- url: https://api.tinybird.co
+  description: Europe (Frankfurt) - Default
+- url: https://api.us-east.tinybird.co
+  description: US East (Virginia)
+- url: https://api.europe-west2.gcp.tinybird.co
+  description: Europe (London)
+- url: https://api.northamerica-northeast2.gcp.tinybird.co
+  description: North America (Toronto)
+security:
+- bearerAuth: []
+tags:
+- name: Jobs
+  description: Retrieve job details and historical records
+paths:
+  /v0/jobs/:
+    get:
+      operationId: listJobs
+      summary: List Jobs
+      description: Retrieve job history from the past 48 hours or last 100 jobs.
+      tags:
+      - Jobs
+      parameters:
+      - name: status
+        in: query
+        description: Filter jobs by status
+        schema:
+          type: string
+          enum:
+          - done
+          - error
+          - working
+          - waiting
+      - name: kind
+        in: query
+        description: Filter jobs by type
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of jobs
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobList'
+  /v0/jobs/{jobId}:
+    get:
+      operationId: getJob
+      summary: Get Job
+      description: Retrieve details about a specific job.
+      tags:
+      - Jobs
+      parameters:
+      - name: jobId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Job details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Job'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    Job:
+      type: object
+      properties:
+        id:
+          type: string
+        kind:
+          type: string
+        status:
+          type: string
+          enum:
+          - done
+          - error
+          - working
+          - waiting
+        progress:
+          type: number
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        error:
+          type: string
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        documentation:
+          type: string
+    JobList:
+      type: object
+      properties:
+        jobs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Job'
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Tinybird authentication token

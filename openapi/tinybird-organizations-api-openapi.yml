@@ -1,0 +1,85 @@
+openapi: 3.0.3
+info:
+  title: Tinybird Analyze Organizations API
+  description: Tinybird is a real-time data platform that allows you to ingest, process, and expose data through low-latency, high-concurrency APIs. The Tinybird API provides endpoints for managing data sources, pipes, queries, tokens, jobs, organizations, events, environment variables, and sink pipes.
+  version: v0
+  contact:
+    name: Tinybird Support
+    url: https://www.tinybird.co/docs
+  x-logo:
+    url: https://www.tinybird.co/logo.png
+servers:
+- url: https://api.tinybird.co
+  description: Europe (Frankfurt) - Default
+- url: https://api.us-east.tinybird.co
+  description: US East (Virginia)
+- url: https://api.europe-west2.gcp.tinybird.co
+  description: Europe (London)
+- url: https://api.northamerica-northeast2.gcp.tinybird.co
+  description: North America (Toronto)
+security:
+- bearerAuth: []
+tags:
+- name: Organizations
+  description: Handle organization management, members, workspaces, and clusters
+paths:
+  /v0/organizations:
+    get:
+      operationId: listOrganizations
+      summary: List Organizations
+      description: List all organizations the authenticated user belongs to.
+      tags:
+      - Organizations
+      responses:
+        '200':
+          description: List of organizations
+          content:
+            application/json:
+              schema:
+                type: object
+  /v0/organizations/{orgId}/members:
+    get:
+      operationId: listOrganizationMembers
+      summary: List Organization Members
+      description: List all members in an organization.
+      tags:
+      - Organizations
+      parameters:
+      - name: orgId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of organization members
+          content:
+            application/json:
+              schema:
+                type: object
+  /v0/organizations/{orgId}/workspaces:
+    get:
+      operationId: listOrganizationWorkspaces
+      summary: List Organization Workspaces
+      description: List all workspaces in an organization.
+      tags:
+      - Organizations
+      parameters:
+      - name: orgId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of workspaces
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Tinybird authentication token

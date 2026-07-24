@@ -1,0 +1,125 @@
+openapi: 3.0.3
+info:
+  title: Tinybird Analyze Environment Variables API
+  description: Tinybird is a real-time data platform that allows you to ingest, process, and expose data through low-latency, high-concurrency APIs. The Tinybird API provides endpoints for managing data sources, pipes, queries, tokens, jobs, organizations, events, environment variables, and sink pipes.
+  version: v0
+  contact:
+    name: Tinybird Support
+    url: https://www.tinybird.co/docs
+  x-logo:
+    url: https://www.tinybird.co/logo.png
+servers:
+- url: https://api.tinybird.co
+  description: Europe (Frankfurt) - Default
+- url: https://api.us-east.tinybird.co
+  description: US East (Virginia)
+- url: https://api.europe-west2.gcp.tinybird.co
+  description: Europe (London)
+- url: https://api.northamerica-northeast2.gcp.tinybird.co
+  description: North America (Toronto)
+security:
+- bearerAuth: []
+tags:
+- name: Environment Variables
+  description: Create and manage workspace variables
+paths:
+  /v0/env_vars:
+    get:
+      operationId: listEnvironmentVariables
+      summary: List Environment Variables
+      description: List all environment variables in the workspace.
+      tags:
+      - Environment Variables
+      responses:
+        '200':
+          description: List of environment variables
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnvVarList'
+    post:
+      operationId: createEnvironmentVariable
+      summary: Create Environment Variable
+      description: Create a new environment variable for use within pipes.
+      tags:
+      - Environment Variables
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnvVarCreate'
+      responses:
+        '200':
+          description: Environment variable created
+  /v0/env_vars/{name}:
+    put:
+      operationId: updateEnvironmentVariable
+      summary: Update Environment Variable
+      description: Update an existing environment variable's value.
+      tags:
+      - Environment Variables
+      parameters:
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnvVarUpdate'
+      responses:
+        '200':
+          description: Environment variable updated
+    delete:
+      operationId: deleteEnvironmentVariable
+      summary: Delete Environment Variable
+      description: Delete an environment variable from the workspace.
+      tags:
+      - Environment Variables
+      parameters:
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Environment variable deleted
+components:
+  schemas:
+    EnvVarList:
+      type: object
+      properties:
+        env_vars:
+          type: array
+          items:
+            $ref: '#/components/schemas/EnvVar'
+    EnvVar:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+    EnvVarUpdate:
+      type: object
+      properties:
+        value:
+          type: string
+    EnvVarCreate:
+      type: object
+      required:
+      - name
+      - value
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Tinybird authentication token

@@ -1,0 +1,65 @@
+openapi: 3.0.3
+info:
+  title: Tinybird Analyze Sink Pipes API
+  description: Tinybird is a real-time data platform that allows you to ingest, process, and expose data through low-latency, high-concurrency APIs. The Tinybird API provides endpoints for managing data sources, pipes, queries, tokens, jobs, organizations, events, environment variables, and sink pipes.
+  version: v0
+  contact:
+    name: Tinybird Support
+    url: https://www.tinybird.co/docs
+  x-logo:
+    url: https://www.tinybird.co/logo.png
+servers:
+- url: https://api.tinybird.co
+  description: Europe (Frankfurt) - Default
+- url: https://api.us-east.tinybird.co
+  description: US East (Virginia)
+- url: https://api.europe-west2.gcp.tinybird.co
+  description: Europe (London)
+- url: https://api.northamerica-northeast2.gcp.tinybird.co
+  description: North America (Toronto)
+security:
+- bearerAuth: []
+tags:
+- name: Sink Pipes
+  description: Manage sink pipes with scheduling and triggering
+paths:
+  /v0/sink_pipes:
+    get:
+      operationId: listSinkPipes
+      summary: List Sink Pipes
+      description: List all sink pipes in the workspace.
+      tags:
+      - Sink Pipes
+      responses:
+        '200':
+          description: List of sink pipes
+          content:
+            application/json:
+              schema:
+                type: object
+    post:
+      operationId: createSinkPipe
+      summary: Create Sink Pipe
+      description: Create a new sink pipe with scheduling and triggering capabilities.
+      tags:
+      - Sink Pipes
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                schedule:
+                  type: string
+                  description: Cron expression for scheduling
+      responses:
+        '200':
+          description: Sink pipe created
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Tinybird authentication token

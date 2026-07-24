@@ -1,0 +1,121 @@
+openapi: 3.0.3
+info:
+  title: Tinybird Analyze Query API
+  description: Tinybird is a real-time data platform that allows you to ingest, process, and expose data through low-latency, high-concurrency APIs. The Tinybird API provides endpoints for managing data sources, pipes, queries, tokens, jobs, organizations, events, environment variables, and sink pipes.
+  version: v0
+  contact:
+    name: Tinybird Support
+    url: https://www.tinybird.co/docs
+  x-logo:
+    url: https://www.tinybird.co/logo.png
+servers:
+- url: https://api.tinybird.co
+  description: Europe (Frankfurt) - Default
+- url: https://api.us-east.tinybird.co
+  description: US East (Virginia)
+- url: https://api.europe-west2.gcp.tinybird.co
+  description: Europe (London)
+- url: https://api.northamerica-northeast2.gcp.tinybird.co
+  description: North America (Toronto)
+security:
+- bearerAuth: []
+tags:
+- name: Query
+  description: Execute SQL queries against pipes and data sources
+paths:
+  /v0/sql:
+    get:
+      operationId: querySql
+      summary: Execute SQL Query (GET)
+      description: Execute a SQL query using the Tinybird query engine via GET request.
+      tags:
+      - Query
+      parameters:
+      - name: q
+        in: query
+        required: true
+        description: SQL query string to execute
+        schema:
+          type: string
+      - name: format
+        in: query
+        description: Output format
+        schema:
+          type: string
+          enum:
+          - JSON
+          - CSV
+          - NDJSON
+          - Parquet
+      responses:
+        '200':
+          description: Query results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryResponse'
+    post:
+      operationId: querySqlPost
+      summary: Execute SQL Query (POST)
+      description: Execute a SQL query using the Tinybird query engine via POST request, supporting templated queries.
+      tags:
+      - Query
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - q
+              properties:
+                q:
+                  type: string
+                  description: SQL query string
+                format:
+                  type: string
+                  enum:
+                  - JSON
+                  - CSV
+                  - NDJSON
+                  - Parquet
+      responses:
+        '200':
+          description: Query results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryResponse'
+components:
+  schemas:
+    QueryResponse:
+      type: object
+      properties:
+        meta:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              type:
+                type: string
+        data:
+          type: array
+          items:
+            type: object
+        rows:
+          type: integer
+        statistics:
+          type: object
+          properties:
+            elapsed:
+              type: number
+            rows_read:
+              type: integer
+            bytes_read:
+              type: integer
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Tinybird authentication token

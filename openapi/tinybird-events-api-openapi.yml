@@ -1,0 +1,96 @@
+openapi: 3.0.3
+info:
+  title: Tinybird Analyze Events API
+  description: Tinybird is a real-time data platform that allows you to ingest, process, and expose data through low-latency, high-concurrency APIs. The Tinybird API provides endpoints for managing data sources, pipes, queries, tokens, jobs, organizations, events, environment variables, and sink pipes.
+  version: v0
+  contact:
+    name: Tinybird Support
+    url: https://www.tinybird.co/docs
+  x-logo:
+    url: https://www.tinybird.co/logo.png
+servers:
+- url: https://api.tinybird.co
+  description: Europe (Frankfurt) - Default
+- url: https://api.us-east.tinybird.co
+  description: US East (Virginia)
+- url: https://api.europe-west2.gcp.tinybird.co
+  description: Europe (London)
+- url: https://api.northamerica-northeast2.gcp.tinybird.co
+  description: North America (Toronto)
+security:
+- bearerAuth: []
+tags:
+- name: Events
+  description: Ingest NDJSON events via HTTP POST
+paths:
+  /v0/events:
+    post:
+      operationId: ingestEvents
+      summary: Ingest Events
+      description: Ingest NDJSON events with a simple HTTP POST request to a data source.
+      tags:
+      - Events
+      parameters:
+      - name: name
+        in: query
+        required: true
+        description: Name of the target data source
+        schema:
+          type: string
+      - name: wait
+        in: query
+        description: Wait for the ingestion to complete before returning
+        schema:
+          type: boolean
+      requestBody:
+        required: true
+        content:
+          application/x-ndjson:
+            schema:
+              type: string
+              description: NDJSON formatted events, one JSON object per line
+      responses:
+        '202':
+          description: Events accepted for ingestion
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IngestResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  responses:
+    Unauthorized:
+      description: Unauthorized - invalid or missing token
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad request - invalid parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        documentation:
+          type: string
+    IngestResponse:
+      type: object
+      properties:
+        successful_rows:
+          type: integer
+        quarantined_rows:
+          type: integer
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Tinybird authentication token

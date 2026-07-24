@@ -1,0 +1,308 @@
+openapi: 3.0.3
+info:
+  title: Tinybird Analyze Data Sources API
+  description: Tinybird is a real-time data platform that allows you to ingest, process, and expose data through low-latency, high-concurrency APIs. The Tinybird API provides endpoints for managing data sources, pipes, queries, tokens, jobs, organizations, events, environment variables, and sink pipes.
+  version: v0
+  contact:
+    name: Tinybird Support
+    url: https://www.tinybird.co/docs
+  x-logo:
+    url: https://www.tinybird.co/logo.png
+servers:
+- url: https://api.tinybird.co
+  description: Europe (Frankfurt) - Default
+- url: https://api.us-east.tinybird.co
+  description: US East (Virginia)
+- url: https://api.europe-west2.gcp.tinybird.co
+  description: Europe (London)
+- url: https://api.northamerica-northeast2.gcp.tinybird.co
+  description: North America (Toronto)
+security:
+- bearerAuth: []
+tags:
+- name: Data Sources
+  description: Manage data source lifecycle and data operations
+paths:
+  /v0/datasources/:
+    get:
+      operationId: listDataSources
+      summary: List Data Sources
+      description: List all accessible data sources in the workspace.
+      tags:
+      - Data Sources
+      parameters:
+      - name: attrs
+        in: query
+        description: Comma-separated list of attributes to include in response
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response with list of data sources
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataSourceList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createDataSource
+      summary: Create Data Source
+      description: Create, append, or replace a data source. The mode is determined by the mode parameter.
+      tags:
+      - Data Sources
+      parameters:
+      - name: mode
+        in: query
+        description: Operation mode - create, append, or replace
+        schema:
+          type: string
+          enum:
+          - create
+          - append
+          - replace
+      - name: name
+        in: query
+        description: Name of the data source
+        schema:
+          type: string
+      - name: format
+        in: query
+        description: Format of the data being ingested
+        schema:
+          type: string
+          enum:
+          - ndjson
+          - csv
+          - parquet
+      requestBody:
+        description: Data to ingest
+        content:
+          text/plain:
+            schema:
+              type: string
+          multipart/form-data:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Data source created or updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataSource'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /v0/datasources/{name}:
+    get:
+      operationId: getDataSource
+      summary: Get Data Source
+      description: Retrieve information and statistics for a specific data source.
+      tags:
+      - Data Sources
+      parameters:
+      - name: name
+        in: path
+        required: true
+        description: Name of the data source
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Data source details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataSource'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateDataSource
+      summary: Update Data Source
+      description: Update data source attributes like name or connector configuration.
+      tags:
+      - Data Sources
+      parameters:
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DataSourceUpdate'
+      responses:
+        '200':
+          description: Data source updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataSource'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteDataSource
+      summary: Delete Data Source
+      description: Drop an entire data source and all its data.
+      tags:
+      - Data Sources
+      parameters:
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Data source deleted successfully
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /v0/datasources/{name}/alter:
+    post:
+      operationId: alterDataSource
+      summary: Alter Data Source
+      description: Modify data source schema, description, or TTL settings.
+      tags:
+      - Data Sources
+      parameters:
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                schema:
+                  type: string
+                  description: New schema definition
+                ttl:
+                  type: string
+                  description: Time-to-live for data rows
+      responses:
+        '200':
+          description: Data source altered successfully
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /v0/datasources/{name}/truncate:
+    post:
+      operationId: truncateDataSource
+      summary: Truncate Data Source
+      description: Remove all data from a data source while keeping the schema.
+      tags:
+      - Data Sources
+      parameters:
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Data source truncated successfully
+  /v0/datasources/{name}/delete:
+    post:
+      operationId: deleteDataSourceRows
+      summary: Delete Data Source Rows
+      description: Delete rows matching specific SQL conditions from a data source.
+      tags:
+      - Data Sources
+      parameters:
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                delete_condition:
+                  type: string
+                  description: SQL WHERE clause condition for rows to delete
+      responses:
+        '200':
+          description: Rows deleted successfully
+components:
+  schemas:
+    DataSourceUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        documentation:
+          type: string
+    DataSource:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        cluster:
+          type: string
+        tags:
+          type: object
+        schema:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        row_count:
+          type: integer
+        disk_bytes:
+          type: integer
+        replicated:
+          type: boolean
+        ttl_expression:
+          type: string
+    DataSourceList:
+      type: object
+      properties:
+        datasources:
+          type: array
+          items:
+            $ref: '#/components/schemas/DataSource'
+  responses:
+    Unauthorized:
+      description: Unauthorized - invalid or missing token
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad request - invalid parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Tinybird authentication token
