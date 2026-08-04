@@ -1,0 +1,297 @@
+{
+  "info": {
+    "_postman_id": "f14fb186-0f95-4a88-aeca-3f5caee5265b",
+    "name": "Tinybird Analyze Jobs API",
+    "description": "Tinybird is a real-time data platform that allows you to ingest, process, and expose data through low-latency, high-concurrency APIs. The Tinybird API provides endpoints for managing data sources, pipes, queries, tokens, jobs, organizations, events, environment variables, and sink pipes.\n\nContact Support:\n Name: Tinybird Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:13:56.000Z",
+    "updatedAt": "2026-07-28T03:13:56.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f14fb186-0f95-4a88-aeca-3f5caee5265b"
+  },
+  "item": [
+    {
+      "name": "v0",
+      "item": [
+        {
+          "name": "jobs",
+          "item": [
+            {
+              "name": "{jobId}",
+              "item": [
+                {
+                  "name": "Get Job",
+                  "id": "c6d73e8b-4002-428e-82b2-db5a57ffb570",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v0/jobs/:jobId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v0",
+                        "jobs",
+                        ":jobId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "00b1b253-1b68-4352-856c-50e0f3ea6a42",
+                          "key": "jobId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Retrieve details about a specific job."
+                  },
+                  "response": [
+                    {
+                      "id": "9e7288c2-c4a9-41cd-a0af-8558bf912d2e",
+                      "name": "Job details",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v0/jobs/:jobId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v0",
+                            "jobs",
+                            ":jobId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "jobId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"status\": \"waiting\",\n  \"progress\": \"<number>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:13:56.000Z",
+                      "updatedAt": "2026-07-28T03:13:56.000Z",
+                      "uid": "35240-9e7288c2-c4a9-41cd-a0af-8558bf912d2e"
+                    },
+                    {
+                      "id": "634c86a3-e7f9-401a-bcad-71df346c489c",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v0/jobs/:jobId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v0",
+                            "jobs",
+                            ":jobId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "jobId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"documentation\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:13:56.000Z",
+                      "updatedAt": "2026-07-28T03:13:56.000Z",
+                      "uid": "35240-634c86a3-e7f9-401a-bcad-71df346c489c"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:13:56.000Z",
+                  "updatedAt": "2026-07-28T03:13:56.000Z",
+                  "uid": "35240-c6d73e8b-4002-428e-82b2-db5a57ffb570"
+                }
+              ],
+              "id": "284ae0e3-1057-49dd-b43e-bf2788fb136e",
+              "createdAt": "2026-07-28T03:13:56.000Z",
+              "updatedAt": "2026-07-28T03:13:56.000Z",
+              "uid": "35240-284ae0e3-1057-49dd-b43e-bf2788fb136e"
+            },
+            {
+              "name": "List Jobs",
+              "id": "54dbbeef-179b-4a00-b18c-8696e8ffd053",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v0/jobs/?status=error&kind=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v0",
+                    "jobs",
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter jobs by status",
+                      "key": "status",
+                      "value": "error"
+                    },
+                    {
+                      "description": "Filter jobs by type",
+                      "key": "kind",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Retrieve job history from the past 48 hours or last 100 jobs."
+              },
+              "response": [
+                {
+                  "id": "2676ad17-2a45-49cf-a30e-ac0eeb0d5266",
+                  "name": "List of jobs",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v0/jobs/?status=error&kind=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v0",
+                        "jobs",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter jobs by status",
+                          "key": "status",
+                          "value": "error"
+                        },
+                        {
+                          "description": "Filter jobs by type",
+                          "key": "kind",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"jobs\": [\n    {\n      \"id\": \"<string>\",\n      \"kind\": \"<string>\",\n      \"status\": \"waiting\",\n      \"progress\": \"<number>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"error\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"kind\": \"<string>\",\n      \"status\": \"error\",\n      \"progress\": \"<number>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"error\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T03:13:56.000Z",
+                  "updatedAt": "2026-07-28T03:13:56.000Z",
+                  "uid": "35240-2676ad17-2a45-49cf-a30e-ac0eeb0d5266"
+                }
+              ],
+              "createdAt": "2026-07-28T03:13:56.000Z",
+              "updatedAt": "2026-07-28T03:13:56.000Z",
+              "uid": "35240-54dbbeef-179b-4a00-b18c-8696e8ffd053"
+            }
+          ],
+          "id": "2d2627f2-5c0b-4559-a197-cd1d439def39",
+          "createdAt": "2026-07-28T03:13:56.000Z",
+          "updatedAt": "2026-07-28T03:13:56.000Z",
+          "uid": "35240-2d2627f2-5c0b-4559-a197-cd1d439def39"
+        }
+      ],
+      "id": "d0c5738e-8314-48e0-b0e1-c1b94cbd5cec",
+      "createdAt": "2026-07-28T03:13:56.000Z",
+      "updatedAt": "2026-07-28T03:13:56.000Z",
+      "uid": "35240-d0c5738e-8314-48e0-b0e1-c1b94cbd5cec"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.tinybird.co"
+    }
+  ]
+}

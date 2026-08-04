@@ -1,0 +1,1018 @@
+{
+  "info": {
+    "_postman_id": "afccacde-d220-4322-b413-230a28c542a6",
+    "name": "Tinybird Analyze Pipes API",
+    "description": "Tinybird is a real-time data platform that allows you to ingest, process, and expose data through low-latency, high-concurrency APIs. The Tinybird API provides endpoints for managing data sources, pipes, queries, tokens, jobs, organizations, events, environment variables, and sink pipes.\n\nContact Support:\n Name: Tinybird Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:13:58.000Z",
+    "updatedAt": "2026-07-28T03:13:58.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-afccacde-d220-4322-b413-230a28c542a6"
+  },
+  "item": [
+    {
+      "name": "v0",
+      "item": [
+        {
+          "name": "pipes",
+          "item": [
+            {
+              "name": "{name}",
+              "item": [
+                {
+                  "name": "nodes",
+                  "item": [
+                    {
+                      "name": "{nodeId}",
+                      "item": [
+                        {
+                          "name": "Update Pipe Node",
+                          "id": "d8a3c003-04c0-4205-bb2f-16ed9a23273c",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"sql\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v0/pipes/:name/nodes/:nodeId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v0",
+                                "pipes",
+                                ":name",
+                                "nodes",
+                                ":nodeId"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "247d44af-09a6-4e55-aff0-7db7abd53465",
+                                  "key": "name",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                },
+                                {
+                                  "id": "5a68f122-aebb-4093-bf98-fad833307a7f",
+                                  "key": "nodeId",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Update an existing pipe node's SQL or description."
+                          },
+                          "response": [
+                            {
+                              "id": "a86c79fd-53ba-4fab-a4e6-e6591cbb7636",
+                              "name": "Node updated successfully",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"sql\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v0/pipes/:name/nodes/:nodeId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v0",
+                                    "pipes",
+                                    ":name",
+                                    "nodes",
+                                    ":nodeId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "name"
+                                    },
+                                    {
+                                      "key": "nodeId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T03:13:58.000Z",
+                              "updatedAt": "2026-07-28T03:13:58.000Z",
+                              "uid": "35240-a86c79fd-53ba-4fab-a4e6-e6591cbb7636"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T03:13:58.000Z",
+                          "updatedAt": "2026-07-28T03:13:58.000Z",
+                          "uid": "35240-d8a3c003-04c0-4205-bb2f-16ed9a23273c"
+                        },
+                        {
+                          "name": "Delete Pipe Node",
+                          "id": "d0200862-9d0d-498f-a4e4-8a119d4f0ebd",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/v0/pipes/:name/nodes/:nodeId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v0",
+                                "pipes",
+                                ":name",
+                                "nodes",
+                                ":nodeId"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "48aac4b2-c92f-492b-a607-c662980969f8",
+                                  "key": "name",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                },
+                                {
+                                  "id": "f3b3c203-2d96-401c-8f96-09da53948df1",
+                                  "key": "nodeId",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Delete a specific node from a pipe."
+                          },
+                          "response": [
+                            {
+                              "id": "db20f8bd-12bd-48ab-8ba1-43a97c8b11f5",
+                              "name": "Node deleted successfully",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v0/pipes/:name/nodes/:nodeId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v0",
+                                    "pipes",
+                                    ":name",
+                                    "nodes",
+                                    ":nodeId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "name"
+                                    },
+                                    {
+                                      "key": "nodeId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T03:13:58.000Z",
+                              "updatedAt": "2026-07-28T03:13:58.000Z",
+                              "uid": "35240-db20f8bd-12bd-48ab-8ba1-43a97c8b11f5"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T03:13:58.000Z",
+                          "updatedAt": "2026-07-28T03:13:58.000Z",
+                          "uid": "35240-d0200862-9d0d-498f-a4e4-8a119d4f0ebd"
+                        }
+                      ],
+                      "id": "ab9fd1e2-9ce3-4fa4-8b77-0bd600b77fca",
+                      "createdAt": "2026-07-28T03:13:58.000Z",
+                      "updatedAt": "2026-07-28T03:13:58.000Z",
+                      "uid": "35240-ab9fd1e2-9ce3-4fa4-8b77-0bd600b77fca"
+                    },
+                    {
+                      "name": "Create Pipe Node",
+                      "id": "fea0d508-8cbe-48b0-af30-5c3942a7c4b1",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"sql\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v0/pipes/:name/nodes",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v0",
+                            "pipes",
+                            ":name",
+                            "nodes"
+                          ],
+                          "variable": [
+                            {
+                              "id": "647ba6a3-b65c-4b1c-88a2-b11065ed66c1",
+                              "key": "name",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Add a new SQL node to an existing pipe."
+                      },
+                      "response": [
+                        {
+                          "id": "2e534b08-9ea2-468b-9912-21873878a344",
+                          "name": "Node created successfully",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"sql\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v0/pipes/:name/nodes",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v0",
+                                "pipes",
+                                ":name",
+                                "nodes"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"sql\": \"<string>\",\n  \"created_at\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-07-28T03:13:58.000Z",
+                          "updatedAt": "2026-07-28T03:13:58.000Z",
+                          "uid": "35240-2e534b08-9ea2-468b-9912-21873878a344"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:13:58.000Z",
+                      "updatedAt": "2026-07-28T03:13:58.000Z",
+                      "uid": "35240-fea0d508-8cbe-48b0-af30-5c3942a7c4b1"
+                    }
+                  ],
+                  "id": "b2d6b9c8-528d-455e-8cdf-4e3935b3a919",
+                  "createdAt": "2026-07-28T03:13:58.000Z",
+                  "updatedAt": "2026-07-28T03:13:58.000Z",
+                  "uid": "35240-b2d6b9c8-528d-455e-8cdf-4e3935b3a919"
+                },
+                {
+                  "name": "explain",
+                  "item": [
+                    {
+                      "name": "Explain Pipe Query",
+                      "id": "dc2c870e-71ef-4155-8071-f9125e75bbaa",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v0/pipes/:name/explain",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v0",
+                            "pipes",
+                            ":name",
+                            "explain"
+                          ],
+                          "variable": [
+                            {
+                              "id": "58ac7198-752f-496f-a188-6c2fecc59fc1",
+                              "key": "name",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Get the query execution plan for a pipe."
+                      },
+                      "response": [
+                        {
+                          "id": "058c7d4a-a4f4-461f-a466-5668f54e00a9",
+                          "name": "Query execution plan",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v0/pipes/:name/explain",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v0",
+                                "pipes",
+                                ":name",
+                                "explain"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{}",
+                          "createdAt": "2026-07-28T03:13:58.000Z",
+                          "updatedAt": "2026-07-28T03:13:58.000Z",
+                          "uid": "35240-058c7d4a-a4f4-461f-a466-5668f54e00a9"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:13:58.000Z",
+                      "updatedAt": "2026-07-28T03:13:58.000Z",
+                      "uid": "35240-dc2c870e-71ef-4155-8071-f9125e75bbaa"
+                    }
+                  ],
+                  "id": "e96da0ce-f5fa-40f3-a07f-79772d1977ca",
+                  "createdAt": "2026-07-28T03:13:58.000Z",
+                  "updatedAt": "2026-07-28T03:13:58.000Z",
+                  "uid": "35240-e96da0ce-f5fa-40f3-a07f-79772d1977ca"
+                },
+                {
+                  "name": "Get Pipe",
+                  "id": "89227864-2adc-4775-8459-3bf240fb05d5",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v0/pipes/:name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v0",
+                        "pipes",
+                        ":name"
+                      ],
+                      "variable": [
+                        {
+                          "id": "0d2ecbd7-352a-4efb-b5cb-b276a99876aa",
+                          "key": "name",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Retrieve details about a specific pipe."
+                  },
+                  "response": [
+                    {
+                      "id": "6c0c44c2-ff19-4dba-b59b-617601aaeb90",
+                      "name": "Pipe details",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v0/pipes/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v0",
+                            "pipes",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"nodes\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"sql\": \"<string>\",\n      \"created_at\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"sql\": \"<string>\",\n      \"created_at\": \"<dateTime>\"\n    }\n  ],\n  \"type\": \"standard\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T03:13:58.000Z",
+                      "updatedAt": "2026-07-28T03:13:58.000Z",
+                      "uid": "35240-6c0c44c2-ff19-4dba-b59b-617601aaeb90"
+                    },
+                    {
+                      "id": "a840d510-2002-4cdf-a253-6923fd23bdf2",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v0/pipes/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v0",
+                            "pipes",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"documentation\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:13:58.000Z",
+                      "updatedAt": "2026-07-28T03:13:58.000Z",
+                      "uid": "35240-a840d510-2002-4cdf-a253-6923fd23bdf2"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:13:58.000Z",
+                  "updatedAt": "2026-07-28T03:13:58.000Z",
+                  "uid": "35240-89227864-2adc-4775-8459-3bf240fb05d5"
+                },
+                {
+                  "name": "Update Pipe",
+                  "id": "33460404-2231-461f-aae5-0ce9ef0f84db",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v0/pipes/:name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v0",
+                        "pipes",
+                        ":name"
+                      ],
+                      "variable": [
+                        {
+                          "id": "43fa12d1-da02-4c58-81dc-751a4aba6fc6",
+                          "key": "name",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Update pipe attributes."
+                  },
+                  "response": [
+                    {
+                      "id": "8930fe84-0929-4daf-99a3-07d52a9a4959",
+                      "name": "Pipe updated",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v0/pipes/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v0",
+                            "pipes",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"nodes\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"sql\": \"<string>\",\n      \"created_at\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"sql\": \"<string>\",\n      \"created_at\": \"<dateTime>\"\n    }\n  ],\n  \"type\": \"standard\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T03:13:58.000Z",
+                      "updatedAt": "2026-07-28T03:13:58.000Z",
+                      "uid": "35240-8930fe84-0929-4daf-99a3-07d52a9a4959"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:13:58.000Z",
+                  "updatedAt": "2026-07-28T03:13:58.000Z",
+                  "uid": "35240-33460404-2231-461f-aae5-0ce9ef0f84db"
+                },
+                {
+                  "name": "Delete Pipe",
+                  "id": "99a0fd37-29f7-4529-9fd1-55ec773c71a1",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/v0/pipes/:name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v0",
+                        "pipes",
+                        ":name"
+                      ],
+                      "variable": [
+                        {
+                          "id": "38a6128f-80e3-42ce-8a6b-a3a8d44a452b",
+                          "key": "name",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Delete a pipe and all its nodes."
+                  },
+                  "response": [
+                    {
+                      "id": "e1699b5c-32e2-4bb3-97df-10a7b6bb13b9",
+                      "name": "Pipe deleted successfully",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v0/pipes/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v0",
+                            "pipes",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:13:58.000Z",
+                      "updatedAt": "2026-07-28T03:13:58.000Z",
+                      "uid": "35240-e1699b5c-32e2-4bb3-97df-10a7b6bb13b9"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:13:58.000Z",
+                  "updatedAt": "2026-07-28T03:13:58.000Z",
+                  "uid": "35240-99a0fd37-29f7-4529-9fd1-55ec773c71a1"
+                }
+              ],
+              "id": "6bde8134-fc98-4b99-9183-013457570fda",
+              "createdAt": "2026-07-28T03:13:58.000Z",
+              "updatedAt": "2026-07-28T03:13:58.000Z",
+              "uid": "35240-6bde8134-fc98-4b99-9183-013457570fda"
+            },
+            {
+              "name": "List Pipes",
+              "id": "c7224c23-4a0c-44ae-95bd-29b7cbaf826c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v0/pipes/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v0",
+                    "pipes",
+                    ""
+                  ]
+                },
+                "description": "List all pipes in the workspace."
+              },
+              "response": [
+                {
+                  "id": "d810dee0-a3b7-460e-9921-83e31726f7a7",
+                  "name": "List of pipes",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v0/pipes/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v0",
+                        "pipes",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"pipes\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"nodes\": [\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"sql\": \"<string>\",\n          \"created_at\": \"<dateTime>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"sql\": \"<string>\",\n          \"created_at\": \"<dateTime>\"\n        }\n      ],\n      \"type\": \"standard\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"nodes\": [\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"sql\": \"<string>\",\n          \"created_at\": \"<dateTime>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"sql\": \"<string>\",\n          \"created_at\": \"<dateTime>\"\n        }\n      ],\n      \"type\": \"sink\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T03:13:58.000Z",
+                  "updatedAt": "2026-07-28T03:13:58.000Z",
+                  "uid": "35240-d810dee0-a3b7-460e-9921-83e31726f7a7"
+                }
+              ],
+              "createdAt": "2026-07-28T03:13:58.000Z",
+              "updatedAt": "2026-07-28T03:13:58.000Z",
+              "uid": "35240-c7224c23-4a0c-44ae-95bd-29b7cbaf826c"
+            },
+            {
+              "name": "Create Pipe",
+              "id": "7d80f344-af1b-443d-a4fa-d1f7f6d8ab7b",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"nodes\": [\n    {\n      \"sql\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"sql\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v0/pipes/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v0",
+                    "pipes",
+                    ""
+                  ]
+                },
+                "description": "Create a new pipe with SQL transformation nodes."
+              },
+              "response": [
+                {
+                  "id": "1f8c3079-483e-4b28-88e4-3c7f653b119d",
+                  "name": "Pipe created successfully",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"nodes\": [\n    {\n      \"sql\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"sql\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v0/pipes/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v0",
+                        "pipes",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"nodes\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"sql\": \"<string>\",\n      \"created_at\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"sql\": \"<string>\",\n      \"created_at\": \"<dateTime>\"\n    }\n  ],\n  \"type\": \"standard\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T03:13:58.000Z",
+                  "updatedAt": "2026-07-28T03:13:58.000Z",
+                  "uid": "35240-1f8c3079-483e-4b28-88e4-3c7f653b119d"
+                }
+              ],
+              "createdAt": "2026-07-28T03:13:58.000Z",
+              "updatedAt": "2026-07-28T03:13:58.000Z",
+              "uid": "35240-7d80f344-af1b-443d-a4fa-d1f7f6d8ab7b"
+            }
+          ],
+          "id": "f1676c9b-8c59-436f-af88-dcb6345205e8",
+          "createdAt": "2026-07-28T03:13:58.000Z",
+          "updatedAt": "2026-07-28T03:13:58.000Z",
+          "uid": "35240-f1676c9b-8c59-436f-af88-dcb6345205e8"
+        }
+      ],
+      "id": "4f8d7a1e-2703-47bd-892a-aef2e684abdd",
+      "createdAt": "2026-07-28T03:13:58.000Z",
+      "updatedAt": "2026-07-28T03:13:58.000Z",
+      "uid": "35240-4f8d7a1e-2703-47bd-892a-aef2e684abdd"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.tinybird.co"
+    }
+  ]
+}

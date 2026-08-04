@@ -1,0 +1,289 @@
+{
+  "info": {
+    "_postman_id": "2092e28f-7903-42dd-91ae-35079fb62d69",
+    "name": "Tinybird Analyze Events API",
+    "description": "Tinybird is a real-time data platform that allows you to ingest, process, and expose data through low-latency, high-concurrency APIs. The Tinybird API provides endpoints for managing data sources, pipes, queries, tokens, jobs, organizations, events, environment variables, and sink pipes.\n\nContact Support:\n Name: Tinybird Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:13:55.000Z",
+    "updatedAt": "2026-07-28T03:13:55.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-2092e28f-7903-42dd-91ae-35079fb62d69"
+  },
+  "item": [
+    {
+      "name": "v0",
+      "item": [
+        {
+          "name": "events",
+          "item": [
+            {
+              "name": "Ingest Events",
+              "id": "59db8ed0-bce5-406c-96a6-473d98327968",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-ndjson"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "<string>"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v0/events?name=<string>&wait=<boolean>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v0",
+                    "events"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) Name of the target data source",
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Wait for the ingestion to complete before returning",
+                      "key": "wait",
+                      "value": "<boolean>"
+                    }
+                  ]
+                },
+                "description": "Ingest NDJSON events with a simple HTTP POST request to a data source."
+              },
+              "response": [
+                {
+                  "id": "3201bff4-45f4-4967-aaaa-1cf83ef073bc",
+                  "name": "Events accepted for ingestion",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-ndjson"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "<string>"
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v0/events?name=<string>&wait=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v0",
+                        "events"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Name of the target data source",
+                          "key": "name",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Wait for the ingestion to complete before returning",
+                          "key": "wait",
+                          "value": "<boolean>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Accepted",
+                  "code": 202,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"successful_rows\": \"<integer>\",\n  \"quarantined_rows\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T03:13:55.000Z",
+                  "updatedAt": "2026-07-28T03:13:55.000Z",
+                  "uid": "35240-3201bff4-45f4-4967-aaaa-1cf83ef073bc"
+                },
+                {
+                  "id": "617462ad-6edf-4a04-b938-4d03dcaab1bd",
+                  "name": "Bad request - invalid parameters",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-ndjson"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "<string>"
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v0/events?name=<string>&wait=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v0",
+                        "events"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Name of the target data source",
+                          "key": "name",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Wait for the ingestion to complete before returning",
+                          "key": "wait",
+                          "value": "<boolean>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"documentation\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:13:55.000Z",
+                  "updatedAt": "2026-07-28T03:13:55.000Z",
+                  "uid": "35240-617462ad-6edf-4a04-b938-4d03dcaab1bd"
+                },
+                {
+                  "id": "f408bb4e-b1c2-4187-929e-fc2f844506db",
+                  "name": "Unauthorized - invalid or missing token",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-ndjson"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "<string>"
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v0/events?name=<string>&wait=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v0",
+                        "events"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Name of the target data source",
+                          "key": "name",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Wait for the ingestion to complete before returning",
+                          "key": "wait",
+                          "value": "<boolean>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"documentation\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:13:55.000Z",
+                  "updatedAt": "2026-07-28T03:13:55.000Z",
+                  "uid": "35240-f408bb4e-b1c2-4187-929e-fc2f844506db"
+                }
+              ],
+              "createdAt": "2026-07-28T03:13:55.000Z",
+              "updatedAt": "2026-07-28T03:13:55.000Z",
+              "uid": "35240-59db8ed0-bce5-406c-96a6-473d98327968"
+            }
+          ],
+          "id": "89c2ba3f-a370-491a-a838-336db223bac3",
+          "createdAt": "2026-07-28T03:13:55.000Z",
+          "updatedAt": "2026-07-28T03:13:55.000Z",
+          "uid": "35240-89c2ba3f-a370-491a-a838-336db223bac3"
+        }
+      ],
+      "id": "726628d9-050e-40b7-b12e-32120bffc8df",
+      "createdAt": "2026-07-28T03:13:55.000Z",
+      "updatedAt": "2026-07-28T03:13:55.000Z",
+      "uid": "35240-726628d9-050e-40b7-b12e-32120bffc8df"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.tinybird.co"
+    }
+  ]
+}

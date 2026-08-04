@@ -1,0 +1,32 @@
+{
+  "provider": "tinybird",
+  "sources": [
+    "tinybird-analyze-api-openapi.yml",
+    "tinybird-data-sources-api-openapi.yml",
+    "tinybird-environment-variables-api-openapi.yml",
+    "tinybird-events-api-openapi.yml",
+    "tinybird-jobs-api-openapi.yml",
+    "tinybird-organizations-api-openapi.yml",
+    "tinybird-pipes-api-openapi.yml",
+    "tinybird-query-api-openapi.yml",
+    "tinybird-sink-pipes-api-openapi.yml",
+    "tinybird-tokens-api-openapi.yml"
+  ],
+  "outputs": [
+    "tinybird-analyze-api-openapi.yml",
+    "tinybird-data-sources-api-openapi.yml",
+    "tinybird-environment-variables-api-openapi.yml",
+    "tinybird-events-api-openapi.yml",
+    "tinybird-jobs-api-openapi.yml",
+    "tinybird-organizations-api-openapi.yml",
+    "tinybird-pipes-api-openapi.yml",
+    "tinybird-query-api-openapi.yml",
+    "tinybird-sink-pipes-api-openapi.yml",
+    "tinybird-tokens-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

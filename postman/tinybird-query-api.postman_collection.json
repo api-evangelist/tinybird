@@ -1,0 +1,250 @@
+{
+  "info": {
+    "_postman_id": "a0e75730-916b-4bbd-8f7f-73dfe7a98a7a",
+    "name": "Tinybird Analyze Query API",
+    "description": "Tinybird is a real-time data platform that allows you to ingest, process, and expose data through low-latency, high-concurrency APIs. The Tinybird API provides endpoints for managing data sources, pipes, queries, tokens, jobs, organizations, events, environment variables, and sink pipes.\n\nContact Support:\n Name: Tinybird Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:13:59.000Z",
+    "updatedAt": "2026-07-28T03:13:59.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a0e75730-916b-4bbd-8f7f-73dfe7a98a7a"
+  },
+  "item": [
+    {
+      "name": "v0",
+      "item": [
+        {
+          "name": "sql",
+          "item": [
+            {
+              "name": "Execute SQL Query (GET)",
+              "id": "0c38e8e9-51d5-4c04-ae36-e0abf57e3bd4",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v0/sql?q=<string>&format=Parquet",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v0",
+                    "sql"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) SQL query string to execute",
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Output format",
+                      "key": "format",
+                      "value": "Parquet"
+                    }
+                  ]
+                },
+                "description": "Execute a SQL query using the Tinybird query engine via GET request."
+              },
+              "response": [
+                {
+                  "id": "3d7904fc-6317-492f-b1f1-cfac7f41cbba",
+                  "name": "Query results",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v0/sql?q=<string>&format=Parquet",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v0",
+                        "sql"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) SQL query string to execute",
+                          "key": "q",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Output format",
+                          "key": "format",
+                          "value": "Parquet"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"meta\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ],\n  \"rows\": \"<integer>\",\n  \"statistics\": {\n    \"elapsed\": \"<number>\",\n    \"rows_read\": \"<integer>\",\n    \"bytes_read\": \"<integer>\"\n  }\n}",
+                  "createdAt": "2026-07-28T03:13:59.000Z",
+                  "updatedAt": "2026-07-28T03:13:59.000Z",
+                  "uid": "35240-3d7904fc-6317-492f-b1f1-cfac7f41cbba"
+                }
+              ],
+              "createdAt": "2026-07-28T03:13:59.000Z",
+              "updatedAt": "2026-07-28T03:13:59.000Z",
+              "uid": "35240-0c38e8e9-51d5-4c04-ae36-e0abf57e3bd4"
+            },
+            {
+              "name": "Execute SQL Query (POST)",
+              "id": "b1d6561a-128e-4229-9e4f-c33c4049d63e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"q\": \"<string>\",\n  \"format\": \"NDJSON\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v0/sql",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v0",
+                    "sql"
+                  ]
+                },
+                "description": "Execute a SQL query using the Tinybird query engine via POST request, supporting templated queries."
+              },
+              "response": [
+                {
+                  "id": "27d40fe5-1c5a-4c11-ba93-afafa39b273f",
+                  "name": "Query results",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"q\": \"<string>\",\n  \"format\": \"NDJSON\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v0/sql",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v0",
+                        "sql"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"meta\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ],\n  \"rows\": \"<integer>\",\n  \"statistics\": {\n    \"elapsed\": \"<number>\",\n    \"rows_read\": \"<integer>\",\n    \"bytes_read\": \"<integer>\"\n  }\n}",
+                  "createdAt": "2026-07-28T03:13:59.000Z",
+                  "updatedAt": "2026-07-28T03:13:59.000Z",
+                  "uid": "35240-27d40fe5-1c5a-4c11-ba93-afafa39b273f"
+                }
+              ],
+              "createdAt": "2026-07-28T03:13:59.000Z",
+              "updatedAt": "2026-07-28T03:13:59.000Z",
+              "uid": "35240-b1d6561a-128e-4229-9e4f-c33c4049d63e"
+            }
+          ],
+          "id": "c022b267-046c-413a-8897-43a61754cca2",
+          "createdAt": "2026-07-28T03:13:59.000Z",
+          "updatedAt": "2026-07-28T03:13:59.000Z",
+          "uid": "35240-c022b267-046c-413a-8897-43a61754cca2"
+        }
+      ],
+      "id": "5c60e65f-2ab4-4bd1-85e5-4c6322282b38",
+      "createdAt": "2026-07-28T03:13:59.000Z",
+      "updatedAt": "2026-07-28T03:13:59.000Z",
+      "uid": "35240-5c60e65f-2ab4-4bd1-85e5-4c6322282b38"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.tinybird.co"
+    }
+  ]
+}

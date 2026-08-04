@@ -1,0 +1,334 @@
+{
+  "info": {
+    "_postman_id": "ab72bddf-8576-45a8-b257-6d8fbd45606f",
+    "name": "Tinybird Analyze Organizations API",
+    "description": "Tinybird is a real-time data platform that allows you to ingest, process, and expose data through low-latency, high-concurrency APIs. The Tinybird API provides endpoints for managing data sources, pipes, queries, tokens, jobs, organizations, events, environment variables, and sink pipes.\n\nContact Support:\n Name: Tinybird Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:13:57.000Z",
+    "updatedAt": "2026-07-28T03:13:57.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ab72bddf-8576-45a8-b257-6d8fbd45606f"
+  },
+  "item": [
+    {
+      "name": "v0",
+      "item": [
+        {
+          "name": "organizations",
+          "item": [
+            {
+              "name": "{orgId}",
+              "item": [
+                {
+                  "name": "members",
+                  "item": [
+                    {
+                      "name": "List Organization Members",
+                      "id": "0cbc6612-47ca-4bda-a821-0114bfab6b29",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v0/organizations/:orgId/members",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v0",
+                            "organizations",
+                            ":orgId",
+                            "members"
+                          ],
+                          "variable": [
+                            {
+                              "id": "4e5bf7df-5c1d-48f1-952d-f170ded3a4bb",
+                              "key": "orgId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "List all members in an organization."
+                      },
+                      "response": [
+                        {
+                          "id": "ec4b996e-68c2-44c3-bd5f-9bc487649055",
+                          "name": "List of organization members",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v0/organizations/:orgId/members",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v0",
+                                "organizations",
+                                ":orgId",
+                                "members"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "orgId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{}",
+                          "createdAt": "2026-07-28T03:13:57.000Z",
+                          "updatedAt": "2026-07-28T03:13:57.000Z",
+                          "uid": "35240-ec4b996e-68c2-44c3-bd5f-9bc487649055"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:13:57.000Z",
+                      "updatedAt": "2026-07-28T03:13:57.000Z",
+                      "uid": "35240-0cbc6612-47ca-4bda-a821-0114bfab6b29"
+                    }
+                  ],
+                  "id": "0a88ebc6-7b3e-4efe-ab97-52ad6ef76e93",
+                  "createdAt": "2026-07-28T03:13:57.000Z",
+                  "updatedAt": "2026-07-28T03:13:57.000Z",
+                  "uid": "35240-0a88ebc6-7b3e-4efe-ab97-52ad6ef76e93"
+                },
+                {
+                  "name": "workspaces",
+                  "item": [
+                    {
+                      "name": "List Organization Workspaces",
+                      "id": "0e951588-b1d1-4a31-8652-4a31bd2c15bb",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v0/organizations/:orgId/workspaces",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v0",
+                            "organizations",
+                            ":orgId",
+                            "workspaces"
+                          ],
+                          "variable": [
+                            {
+                              "id": "e18c62d0-16fc-4c02-b966-81bdbe466952",
+                              "key": "orgId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "List all workspaces in an organization."
+                      },
+                      "response": [
+                        {
+                          "id": "5e38dbb4-ef13-4749-9ef8-4a2a0cbd7c21",
+                          "name": "List of workspaces",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v0/organizations/:orgId/workspaces",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v0",
+                                "organizations",
+                                ":orgId",
+                                "workspaces"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "orgId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{}",
+                          "createdAt": "2026-07-28T03:13:57.000Z",
+                          "updatedAt": "2026-07-28T03:13:57.000Z",
+                          "uid": "35240-5e38dbb4-ef13-4749-9ef8-4a2a0cbd7c21"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:13:57.000Z",
+                      "updatedAt": "2026-07-28T03:13:57.000Z",
+                      "uid": "35240-0e951588-b1d1-4a31-8652-4a31bd2c15bb"
+                    }
+                  ],
+                  "id": "1aaf35d4-e766-4f30-95e4-faae2d720f6d",
+                  "createdAt": "2026-07-28T03:13:57.000Z",
+                  "updatedAt": "2026-07-28T03:13:57.000Z",
+                  "uid": "35240-1aaf35d4-e766-4f30-95e4-faae2d720f6d"
+                }
+              ],
+              "id": "cd004c11-7376-4cde-bf0e-cc1e094b02ca",
+              "createdAt": "2026-07-28T03:13:57.000Z",
+              "updatedAt": "2026-07-28T03:13:57.000Z",
+              "uid": "35240-cd004c11-7376-4cde-bf0e-cc1e094b02ca"
+            },
+            {
+              "name": "List Organizations",
+              "id": "c694da84-ba83-418d-9181-dad5d5f535e3",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v0/organizations",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v0",
+                    "organizations"
+                  ]
+                },
+                "description": "List all organizations the authenticated user belongs to."
+              },
+              "response": [
+                {
+                  "id": "64d6a5fd-3db0-4279-aa8a-07165ed77a47",
+                  "name": "List of organizations",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v0/organizations",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v0",
+                        "organizations"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T03:13:57.000Z",
+                  "updatedAt": "2026-07-28T03:13:57.000Z",
+                  "uid": "35240-64d6a5fd-3db0-4279-aa8a-07165ed77a47"
+                }
+              ],
+              "createdAt": "2026-07-28T03:13:57.000Z",
+              "updatedAt": "2026-07-28T03:13:57.000Z",
+              "uid": "35240-c694da84-ba83-418d-9181-dad5d5f535e3"
+            }
+          ],
+          "id": "1779a931-f2dd-4782-9e68-44b717d4b048",
+          "createdAt": "2026-07-28T03:13:57.000Z",
+          "updatedAt": "2026-07-28T03:13:57.000Z",
+          "uid": "35240-1779a931-f2dd-4782-9e68-44b717d4b048"
+        }
+      ],
+      "id": "671b0232-97c5-4956-aaef-844b8c343efb",
+      "createdAt": "2026-07-28T03:13:57.000Z",
+      "updatedAt": "2026-07-28T03:13:57.000Z",
+      "uid": "35240-671b0232-97c5-4956-aaef-844b8c343efb"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.tinybird.co"
+    }
+  ]
+}

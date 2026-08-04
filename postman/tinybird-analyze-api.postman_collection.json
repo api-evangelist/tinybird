@@ -1,0 +1,152 @@
+{
+  "info": {
+    "_postman_id": "5959e672-97c5-40d1-94b0-ae8ce2c2952c",
+    "name": "Tinybird Analyze API",
+    "description": "Tinybird is a real-time data platform that allows you to ingest, process, and expose data through low-latency, high-concurrency APIs. The Tinybird API provides endpoints for managing data sources, pipes, queries, tokens, jobs, organizations, events, environment variables, and sink pipes.\n\nContact Support:\n Name: Tinybird Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:13:51.000Z",
+    "updatedAt": "2026-07-28T03:13:52.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-5959e672-97c5-40d1-94b0-ae8ce2c2952c"
+  },
+  "item": [
+    {
+      "name": "v0",
+      "item": [
+        {
+          "name": "analyze",
+          "item": [
+            {
+              "name": "Analyze File Schema",
+              "id": "46ff2f73-7548-4073-a2fb-eebb07bd8b53",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "multipart/form-data"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": "NDJSON, CSV, or Parquet file to analyze",
+                      "key": "file",
+                      "type": "file",
+                      "value": null
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v0/analyze",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v0",
+                    "analyze"
+                  ]
+                },
+                "description": "Analyze a given NDJSON, CSV, or Parquet file to generate a Tinybird Data Source schema."
+              },
+              "response": [
+                {
+                  "id": "cc5e2bec-e6e5-45f1-b181-ec30fbbd1e22",
+                  "name": "Generated schema",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "multipart/form-data"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "description": "NDJSON, CSV, or Parquet file to analyze",
+                          "key": "file",
+                          "type": "file"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v0/analyze",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v0",
+                        "analyze"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"schema\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:13:52.000Z",
+                  "updatedAt": "2026-07-28T03:13:52.000Z",
+                  "uid": "35240-cc5e2bec-e6e5-45f1-b181-ec30fbbd1e22"
+                }
+              ],
+              "createdAt": "2026-07-28T03:13:52.000Z",
+              "updatedAt": "2026-07-28T03:13:52.000Z",
+              "uid": "35240-46ff2f73-7548-4073-a2fb-eebb07bd8b53"
+            }
+          ],
+          "id": "6e5b666b-4c7d-4045-ae37-facbe0a0bf49",
+          "createdAt": "2026-07-28T03:13:52.000Z",
+          "updatedAt": "2026-07-28T03:13:52.000Z",
+          "uid": "35240-6e5b666b-4c7d-4045-ae37-facbe0a0bf49"
+        }
+      ],
+      "id": "98222b59-b451-435d-8712-b0f716fb25ca",
+      "createdAt": "2026-07-28T03:13:52.000Z",
+      "updatedAt": "2026-07-28T03:13:52.000Z",
+      "uid": "35240-98222b59-b451-435d-8712-b0f716fb25ca"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.tinybird.co"
+    }
+  ]
+}

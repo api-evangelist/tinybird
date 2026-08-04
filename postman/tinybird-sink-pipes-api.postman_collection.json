@@ -1,0 +1,213 @@
+{
+  "info": {
+    "_postman_id": "d5eb1881-a5bc-478d-8a32-e18a58bae3a8",
+    "name": "Tinybird Analyze Sink Pipes API",
+    "description": "Tinybird is a real-time data platform that allows you to ingest, process, and expose data through low-latency, high-concurrency APIs. The Tinybird API provides endpoints for managing data sources, pipes, queries, tokens, jobs, organizations, events, environment variables, and sink pipes.\n\nContact Support:\n Name: Tinybird Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:14:00.000Z",
+    "updatedAt": "2026-07-28T03:14:00.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d5eb1881-a5bc-478d-8a32-e18a58bae3a8"
+  },
+  "item": [
+    {
+      "name": "v0",
+      "item": [
+        {
+          "name": "sink_pipes",
+          "item": [
+            {
+              "name": "List Sink Pipes",
+              "id": "d99c549e-6be6-4261-b212-f08652d307a1",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v0/sink_pipes",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v0",
+                    "sink_pipes"
+                  ]
+                },
+                "description": "List all sink pipes in the workspace."
+              },
+              "response": [
+                {
+                  "id": "00707cde-578f-4d8b-9b2e-7d4329553996",
+                  "name": "List of sink pipes",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v0/sink_pipes",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v0",
+                        "sink_pipes"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T03:14:01.000Z",
+                  "updatedAt": "2026-07-28T03:14:01.000Z",
+                  "uid": "35240-00707cde-578f-4d8b-9b2e-7d4329553996"
+                }
+              ],
+              "createdAt": "2026-07-28T03:14:00.000Z",
+              "updatedAt": "2026-07-28T03:14:00.000Z",
+              "uid": "35240-d99c549e-6be6-4261-b212-f08652d307a1"
+            },
+            {
+              "name": "Create Sink Pipe",
+              "id": "5fb7b166-a34f-40dd-860e-35a2ab07da99",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"schedule\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v0/sink_pipes",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v0",
+                    "sink_pipes"
+                  ]
+                },
+                "description": "Create a new sink pipe with scheduling and triggering capabilities."
+              },
+              "response": [
+                {
+                  "id": "e2d579e5-400d-484d-9c7e-f659fe07ee73",
+                  "name": "Sink pipe created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"schedule\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v0/sink_pipes",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v0",
+                        "sink_pipes"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:14:01.000Z",
+                  "updatedAt": "2026-07-28T03:14:01.000Z",
+                  "uid": "35240-e2d579e5-400d-484d-9c7e-f659fe07ee73"
+                }
+              ],
+              "createdAt": "2026-07-28T03:14:00.000Z",
+              "updatedAt": "2026-07-28T03:14:00.000Z",
+              "uid": "35240-5fb7b166-a34f-40dd-860e-35a2ab07da99"
+            }
+          ],
+          "id": "5f4b7e05-a205-4e09-b23a-3dc0105b4a32",
+          "createdAt": "2026-07-28T03:14:00.000Z",
+          "updatedAt": "2026-07-28T03:14:00.000Z",
+          "uid": "35240-5f4b7e05-a205-4e09-b23a-3dc0105b4a32"
+        }
+      ],
+      "id": "51e4cc85-094f-47bb-9290-711c7b221b23",
+      "createdAt": "2026-07-28T03:14:00.000Z",
+      "updatedAt": "2026-07-28T03:14:00.000Z",
+      "uid": "35240-51e4cc85-094f-47bb-9290-711c7b221b23"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.tinybird.co"
+    }
+  ]
+}

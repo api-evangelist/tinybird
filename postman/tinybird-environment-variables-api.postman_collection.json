@@ -1,0 +1,403 @@
+{
+  "info": {
+    "_postman_id": "93e958cf-9389-48c7-8d9d-f826da14a8e8",
+    "name": "Tinybird Analyze Environment Variables API",
+    "description": "Tinybird is a real-time data platform that allows you to ingest, process, and expose data through low-latency, high-concurrency APIs. The Tinybird API provides endpoints for managing data sources, pipes, queries, tokens, jobs, organizations, events, environment variables, and sink pipes.\n\nContact Support:\n Name: Tinybird Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:13:54.000Z",
+    "updatedAt": "2026-07-28T03:13:54.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-93e958cf-9389-48c7-8d9d-f826da14a8e8"
+  },
+  "item": [
+    {
+      "name": "v0",
+      "item": [
+        {
+          "name": "env_vars",
+          "item": [
+            {
+              "name": "{name}",
+              "item": [
+                {
+                  "name": "Update Environment Variable",
+                  "id": "0c7c6f07-5959-42d0-83ef-203091c3b940",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"value\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v0/env_vars/:name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v0",
+                        "env_vars",
+                        ":name"
+                      ],
+                      "variable": [
+                        {
+                          "id": "1ec8f957-e63f-40b1-b4f6-73776e1cd706",
+                          "key": "name",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Update an existing environment variable's value."
+                  },
+                  "response": [
+                    {
+                      "id": "bf3a125a-0c9e-48eb-82ca-d0b2225ce783",
+                      "name": "Environment variable updated",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"value\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v0/env_vars/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v0",
+                            "env_vars",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:13:54.000Z",
+                      "updatedAt": "2026-07-28T03:13:54.000Z",
+                      "uid": "35240-bf3a125a-0c9e-48eb-82ca-d0b2225ce783"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:13:54.000Z",
+                  "updatedAt": "2026-07-28T03:13:54.000Z",
+                  "uid": "35240-0c7c6f07-5959-42d0-83ef-203091c3b940"
+                },
+                {
+                  "name": "Delete Environment Variable",
+                  "id": "79e43735-f0b2-4da7-9573-60c6d6aae6ec",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/v0/env_vars/:name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v0",
+                        "env_vars",
+                        ":name"
+                      ],
+                      "variable": [
+                        {
+                          "id": "d39b1d90-078e-45a7-a67e-fe57a12532b5",
+                          "key": "name",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Delete an environment variable from the workspace."
+                  },
+                  "response": [
+                    {
+                      "id": "f2c983ad-58e0-42da-9fef-558c88b2a4f3",
+                      "name": "Environment variable deleted",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v0/env_vars/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v0",
+                            "env_vars",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:13:54.000Z",
+                      "updatedAt": "2026-07-28T03:13:54.000Z",
+                      "uid": "35240-f2c983ad-58e0-42da-9fef-558c88b2a4f3"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:13:54.000Z",
+                  "updatedAt": "2026-07-28T03:13:54.000Z",
+                  "uid": "35240-79e43735-f0b2-4da7-9573-60c6d6aae6ec"
+                }
+              ],
+              "id": "2c4f9fd0-2e29-4cfa-86fb-db3633d8e563",
+              "createdAt": "2026-07-28T03:13:54.000Z",
+              "updatedAt": "2026-07-28T03:13:54.000Z",
+              "uid": "35240-2c4f9fd0-2e29-4cfa-86fb-db3633d8e563"
+            },
+            {
+              "name": "List Environment Variables",
+              "id": "12dd536f-a682-469c-be60-e90ee52d5ecc",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v0/env_vars",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v0",
+                    "env_vars"
+                  ]
+                },
+                "description": "List all environment variables in the workspace."
+              },
+              "response": [
+                {
+                  "id": "48dbd995-7eb0-4c54-a8e2-80592a666619",
+                  "name": "List of environment variables",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v0/env_vars",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v0",
+                        "env_vars"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"env_vars\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T03:13:54.000Z",
+                  "updatedAt": "2026-07-28T03:13:54.000Z",
+                  "uid": "35240-48dbd995-7eb0-4c54-a8e2-80592a666619"
+                }
+              ],
+              "createdAt": "2026-07-28T03:13:54.000Z",
+              "updatedAt": "2026-07-28T03:13:54.000Z",
+              "uid": "35240-12dd536f-a682-469c-be60-e90ee52d5ecc"
+            },
+            {
+              "name": "Create Environment Variable",
+              "id": "3d0db335-4b02-4c08-ad99-b9d053bae6e2",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"value\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v0/env_vars",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v0",
+                    "env_vars"
+                  ]
+                },
+                "description": "Create a new environment variable for use within pipes."
+              },
+              "response": [
+                {
+                  "id": "9cf6a9c4-b2c0-4e03-b6f7-193667020712",
+                  "name": "Environment variable created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"value\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v0/env_vars",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v0",
+                        "env_vars"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:13:54.000Z",
+                  "updatedAt": "2026-07-28T03:13:54.000Z",
+                  "uid": "35240-9cf6a9c4-b2c0-4e03-b6f7-193667020712"
+                }
+              ],
+              "createdAt": "2026-07-28T03:13:54.000Z",
+              "updatedAt": "2026-07-28T03:13:54.000Z",
+              "uid": "35240-3d0db335-4b02-4c08-ad99-b9d053bae6e2"
+            }
+          ],
+          "id": "426a3059-b481-4039-8573-d7e12b29fe41",
+          "createdAt": "2026-07-28T03:13:54.000Z",
+          "updatedAt": "2026-07-28T03:13:54.000Z",
+          "uid": "35240-426a3059-b481-4039-8573-d7e12b29fe41"
+        }
+      ],
+      "id": "26d782e8-b8ad-41ed-993c-c45f430f2cad",
+      "createdAt": "2026-07-28T03:13:54.000Z",
+      "updatedAt": "2026-07-28T03:13:54.000Z",
+      "uid": "35240-26d782e8-b8ad-41ed-993c-c45f430f2cad"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.tinybird.co"
+    }
+  ]
+}
