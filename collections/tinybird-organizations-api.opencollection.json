@@ -1,0 +1,71 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tinybird Analyze Organizations API",
+    "version": "v0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Organizations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Organizations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tinybird.co/v0/organizations"
+          },
+          "docs": "List all organizations the authenticated user belongs to."
+        },
+        {
+          "info": {
+            "name": "List Organization Members",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tinybird.co/v0/organizations/:orgId/members",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List all members in an organization."
+        },
+        {
+          "info": {
+            "name": "List Organization Workspaces",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tinybird.co/v0/organizations/:orgId/workspaces",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List all workspaces in an organization."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

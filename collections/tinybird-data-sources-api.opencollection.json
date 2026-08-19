@@ -1,0 +1,199 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tinybird Analyze Data Sources API",
+    "version": "v0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Data Sources",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Data Sources",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tinybird.co/v0/datasources/",
+            "params": [
+              {
+                "name": "attrs",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of attributes to include in response"
+              }
+            ]
+          },
+          "docs": "List all accessible data sources in the workspace."
+        },
+        {
+          "info": {
+            "name": "Create Data Source",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.tinybird.co/v0/datasources/",
+            "params": [
+              {
+                "name": "mode",
+                "value": "",
+                "type": "query",
+                "description": "Operation mode - create, append, or replace"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Name of the data source"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the data being ingested"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Create, append, or replace a data source. The mode is determined by the mode parameter."
+        },
+        {
+          "info": {
+            "name": "Get Data Source",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tinybird.co/v0/datasources/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the data source"
+              }
+            ]
+          },
+          "docs": "Retrieve information and statistics for a specific data source."
+        },
+        {
+          "info": {
+            "name": "Update Data Source",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.tinybird.co/v0/datasources/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update data source attributes like name or connector configuration."
+        },
+        {
+          "info": {
+            "name": "Delete Data Source",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.tinybird.co/v0/datasources/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Drop an entire data source and all its data."
+        },
+        {
+          "info": {
+            "name": "Alter Data Source",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.tinybird.co/v0/datasources/:name/alter",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modify data source schema, description, or TTL settings."
+        },
+        {
+          "info": {
+            "name": "Truncate Data Source",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.tinybird.co/v0/datasources/:name/truncate",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Remove all data from a data source while keeping the schema."
+        },
+        {
+          "info": {
+            "name": "Delete Data Source Rows",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.tinybird.co/v0/datasources/:name/delete",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete rows matching specific SQL conditions from a data source."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

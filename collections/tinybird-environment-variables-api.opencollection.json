@@ -1,0 +1,90 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tinybird Analyze Environment Variables API",
+    "version": "v0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Environment Variables",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Environment Variables",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tinybird.co/v0/env_vars"
+          },
+          "docs": "List all environment variables in the workspace."
+        },
+        {
+          "info": {
+            "name": "Create Environment Variable",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.tinybird.co/v0/env_vars",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new environment variable for use within pipes."
+        },
+        {
+          "info": {
+            "name": "Update Environment Variable",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.tinybird.co/v0/env_vars/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing environment variable's value."
+        },
+        {
+          "info": {
+            "name": "Delete Environment Variable",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.tinybird.co/v0/env_vars/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete an environment variable from the workspace."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

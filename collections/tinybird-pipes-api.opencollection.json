@@ -1,0 +1,198 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tinybird Analyze Pipes API",
+    "version": "v0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Pipes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Pipes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tinybird.co/v0/pipes/"
+          },
+          "docs": "List all pipes in the workspace."
+        },
+        {
+          "info": {
+            "name": "Create Pipe",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.tinybird.co/v0/pipes/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new pipe with SQL transformation nodes."
+        },
+        {
+          "info": {
+            "name": "Get Pipe",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tinybird.co/v0/pipes/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve details about a specific pipe."
+        },
+        {
+          "info": {
+            "name": "Update Pipe",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.tinybird.co/v0/pipes/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update pipe attributes."
+        },
+        {
+          "info": {
+            "name": "Delete Pipe",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.tinybird.co/v0/pipes/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a pipe and all its nodes."
+        },
+        {
+          "info": {
+            "name": "Create Pipe Node",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.tinybird.co/v0/pipes/:name/nodes",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a new SQL node to an existing pipe."
+        },
+        {
+          "info": {
+            "name": "Update Pipe Node",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.tinybird.co/v0/pipes/:name/nodes/:nodeId",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "nodeId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing pipe node's SQL or description."
+        },
+        {
+          "info": {
+            "name": "Delete Pipe Node",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.tinybird.co/v0/pipes/:name/nodes/:nodeId",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "nodeId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a specific node from a pipe."
+        },
+        {
+          "info": {
+            "name": "Explain Pipe Query",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tinybird.co/v0/pipes/:name/explain",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get the query execution plan for a pipe."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

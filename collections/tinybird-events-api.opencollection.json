@@ -1,0 +1,53 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tinybird Analyze Events API",
+    "version": "v0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Ingest Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.tinybird.co/v0/events",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Name of the target data source"
+              },
+              {
+                "name": "wait",
+                "value": "",
+                "type": "query",
+                "description": "Wait for the ingestion to complete before returning"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Ingest NDJSON events with a simple HTTP POST request to a data source."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

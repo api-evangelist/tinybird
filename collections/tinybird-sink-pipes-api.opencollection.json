@@ -1,0 +1,50 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tinybird Analyze Sink Pipes API",
+    "version": "v0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Sink Pipes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Sink Pipes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tinybird.co/v0/sink_pipes"
+          },
+          "docs": "List all sink pipes in the workspace."
+        },
+        {
+          "info": {
+            "name": "Create Sink Pipe",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.tinybird.co/v0/sink_pipes",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new sink pipe with scheduling and triggering capabilities."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
