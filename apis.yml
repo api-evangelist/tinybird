@@ -122,6 +122,8 @@ apis:
   humanURL: https://www.tinybird.co/docs/api-reference
   baseURL: https://api.tinybird.co
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
@@ -150,6 +152,8 @@ apis:
   humanURL: https://www.tinybird.co/docs/api-reference
   baseURL: https://api.tinybird.co
   tags:
+  - Job
+  tags_raw:
   - Jobs
   properties:
   - type: OpenAPI
@@ -178,6 +182,8 @@ apis:
   humanURL: https://www.tinybird.co/docs/api-reference
   baseURL: https://api.tinybird.co
   tags:
+  - Organization
+  tags_raw:
   - Organizations
   properties:
   - type: OpenAPI
