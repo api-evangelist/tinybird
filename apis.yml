@@ -5,6 +5,18 @@ description: >-
   high-concurrency APIs. The platform supports real-time analytics at scale with a SQL-based transformation layer and
   instant REST API endpoint publishing.
 type: Index
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
