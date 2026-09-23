@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Tinybird Analyze Pipes API
+  title: Tinybird Pipes API
   description: Tinybird is a real-time data platform that allows you to ingest, process, and expose data through low-latency, high-concurrency APIs. The Tinybird API provides endpoints for managing data sources, pipes, queries, tokens, jobs, organizations, events, environment variables, and sink pipes.
   version: v0
   contact:
@@ -221,45 +221,6 @@ components:
         created_at:
           type: string
           format: date-time
-    PipeNodeUpdate:
-      type: object
-      properties:
-        sql:
-          type: string
-        description:
-          type: string
-    PipeList:
-      type: object
-      properties:
-        pipes:
-          type: array
-          items:
-            $ref: '#/components/schemas/Pipe'
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        documentation:
-          type: string
-    PipeUpdate:
-      type: object
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-    PipeNodeCreate:
-      type: object
-      required:
-      - sql
-      properties:
-        name:
-          type: string
-        sql:
-          type: string
-        description:
-          type: string
     PipeCreate:
       type: object
       required:
@@ -273,6 +234,45 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PipeNodeCreate'
+    PipeUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+    PipeNodeUpdate:
+      type: object
+      properties:
+        sql:
+          type: string
+        description:
+          type: string
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        documentation:
+          type: string
+    PipeNodeCreate:
+      type: object
+      required:
+      - sql
+      properties:
+        name:
+          type: string
+        sql:
+          type: string
+        description:
+          type: string
+    PipeList:
+      type: object
+      properties:
+        pipes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Pipe'
     Pipe:
       type: object
       properties:

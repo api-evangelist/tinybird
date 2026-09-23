@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Tinybird Analyze Tokens API
+  title: Tinybird Tokens API
   description: Tinybird is a real-time data platform that allows you to ingest, process, and expose data through low-latency, high-concurrency APIs. The Tinybird API provides endpoints for managing data sources, pipes, queries, tokens, jobs, organizations, events, environment variables, and sink pipes.
   version: v0
   contact:
@@ -134,24 +134,8 @@ paths:
                 $ref: '#/components/schemas/Token'
 components:
   schemas:
-    Error:
+    TokenUpdate:
       type: object
-      properties:
-        error:
-          type: string
-        documentation:
-          type: string
-    TokenList:
-      type: object
-      properties:
-        tokens:
-          type: array
-          items:
-            $ref: '#/components/schemas/Token'
-    TokenCreate:
-      type: object
-      required:
-      - name
       properties:
         name:
           type: string
@@ -159,8 +143,17 @@ components:
           type: array
           items:
             type: object
-    TokenUpdate:
+    Error:
       type: object
+      properties:
+        error:
+          type: string
+        documentation:
+          type: string
+    TokenCreate:
+      type: object
+      required:
+      - name
       properties:
         name:
           type: string
@@ -189,6 +182,13 @@ components:
         created_at:
           type: string
           format: date-time
+    TokenList:
+      type: object
+      properties:
+        tokens:
+          type: array
+          items:
+            $ref: '#/components/schemas/Token'
   responses:
     NotFound:
       description: Resource not found

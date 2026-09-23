@@ -1,16 +1,7 @@
 {
   "provider": "tinybird",
   "sources": [
-    "tinybird-analyze-api-openapi.yml",
-    "tinybird-data-sources-api-openapi.yml",
-    "tinybird-environment-variables-api-openapi.yml",
-    "tinybird-events-api-openapi.yml",
-    "tinybird-jobs-api-openapi.yml",
-    "tinybird-organizations-api-openapi.yml",
-    "tinybird-pipes-api-openapi.yml",
-    "tinybird-query-api-openapi.yml",
-    "tinybird-sink-pipes-api-openapi.yml",
-    "tinybird-tokens-api-openapi.yml"
+    "_original/tinybird-openapi.yml"
   ],
   "outputs": [
     "tinybird-analyze-api-openapi.yml",
@@ -27,6 +18,21 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "tinybird-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "tinybird-analyze-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tinybird-data-sources-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tinybird-environment-variables-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tinybird-events-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tinybird-jobs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tinybird-organizations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tinybird-pipes-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tinybird-query-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tinybird-sink-pipes-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tinybird-tokens-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

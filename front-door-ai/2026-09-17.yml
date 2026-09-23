@@ -1,0 +1,27 @@
+# Front Door AI Index — tinybird — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: tinybird
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: www.tinybird.co
+  final_host: www.tinybird.co
+  ownership: own
+  owner: tinybird
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 5
+  host_score: 5
+  density: 4.43
+  words: 1129
+  tiers:
+    agentic: 1
+    core: 4
+    model: 0
+  ambiguous: 6
+  top_terms:
+    agent: 6
+    AI: 4
+    MCP: 1
