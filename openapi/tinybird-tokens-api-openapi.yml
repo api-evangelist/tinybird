@@ -134,6 +134,20 @@ paths:
                 $ref: '#/components/schemas/Token'
 components:
   schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        documentation:
+          type: string
+    TokenList:
+      type: object
+      properties:
+        tokens:
+          type: array
+          items:
+            $ref: '#/components/schemas/Token'
     TokenUpdate:
       type: object
       properties:
@@ -143,13 +157,6 @@ components:
           type: array
           items:
             type: object
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        documentation:
-          type: string
     TokenCreate:
       type: object
       required:
@@ -182,13 +189,6 @@ components:
         created_at:
           type: string
           format: date-time
-    TokenList:
-      type: object
-      properties:
-        tokens:
-          type: array
-          items:
-            $ref: '#/components/schemas/Token'
   responses:
     NotFound:
       description: Resource not found

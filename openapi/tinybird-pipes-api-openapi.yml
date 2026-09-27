@@ -209,18 +209,27 @@ paths:
                 type: object
 components:
   schemas:
-    PipeNode:
+    PipeList:
       type: object
       properties:
-        id:
+        pipes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Pipe'
+    Error:
+      type: object
+      properties:
+        error:
           type: string
+        documentation:
+          type: string
+    PipeUpdate:
+      type: object
+      properties:
         name:
           type: string
-        sql:
+        description:
           type: string
-        created_at:
-          type: string
-          format: date-time
     PipeCreate:
       type: object
       required:
@@ -234,27 +243,18 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PipeNodeCreate'
-    PipeUpdate:
+    PipeNode:
       type: object
       properties:
+        id:
+          type: string
         name:
           type: string
-        description:
-          type: string
-    PipeNodeUpdate:
-      type: object
-      properties:
         sql:
           type: string
-        description:
+        created_at:
           type: string
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        documentation:
-          type: string
+          format: date-time
     PipeNodeCreate:
       type: object
       required:
@@ -266,13 +266,6 @@ components:
           type: string
         description:
           type: string
-    PipeList:
-      type: object
-      properties:
-        pipes:
-          type: array
-          items:
-            $ref: '#/components/schemas/Pipe'
     Pipe:
       type: object
       properties:
@@ -299,6 +292,13 @@ components:
         updated_at:
           type: string
           format: date-time
+    PipeNodeUpdate:
+      type: object
+      properties:
+        sql:
+          type: string
+        description:
+          type: string
   responses:
     NotFound:
       description: Resource not found

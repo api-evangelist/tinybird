@@ -94,18 +94,18 @@ components:
       properties:
         value:
           type: string
-    EnvVarCreate:
+    EnvVar:
       type: object
-      required:
-      - name
-      - value
       properties:
         name:
           type: string
         value:
           type: string
-    EnvVar:
+    EnvVarCreate:
       type: object
+      required:
+      - name
+      - value
       properties:
         name:
           type: string

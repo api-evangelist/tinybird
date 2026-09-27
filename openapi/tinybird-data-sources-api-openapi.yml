@@ -234,20 +234,6 @@ paths:
           description: Rows deleted successfully
 components:
   schemas:
-    DataSourceUpdate:
-      type: object
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        documentation:
-          type: string
     DataSource:
       type: object
       properties:
@@ -282,15 +268,29 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/DataSource'
+    DataSourceUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        documentation:
+          type: string
   responses:
-    BadRequest:
-      description: Bad request - invalid parameters
+    Unauthorized:
+      description: Unauthorized - invalid or missing token
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Unauthorized - invalid or missing token
+    BadRequest:
+      description: Bad request - invalid parameters
       content:
         application/json:
           schema:
