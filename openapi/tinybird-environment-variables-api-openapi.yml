@@ -89,6 +89,13 @@ paths:
           description: Environment variable deleted
 components:
   schemas:
+    EnvVarList:
+      type: object
+      properties:
+        env_vars:
+          type: array
+          items:
+            $ref: '#/components/schemas/EnvVar'
     EnvVarUpdate:
       type: object
       properties:
@@ -111,13 +118,6 @@ components:
           type: string
         value:
           type: string
-    EnvVarList:
-      type: object
-      properties:
-        env_vars:
-          type: array
-          items:
-            $ref: '#/components/schemas/EnvVar'
   securitySchemes:
     bearerAuth:
       type: http

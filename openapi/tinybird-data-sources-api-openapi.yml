@@ -234,6 +234,13 @@ paths:
           description: Rows deleted successfully
 components:
   schemas:
+    DataSourceUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
     DataSource:
       type: object
       properties:
@@ -261,20 +268,6 @@ components:
           type: boolean
         ttl_expression:
           type: string
-    DataSourceList:
-      type: object
-      properties:
-        datasources:
-          type: array
-          items:
-            $ref: '#/components/schemas/DataSource'
-    DataSourceUpdate:
-      type: object
-      properties:
-        name:
-          type: string
-        description:
-          type: string
     Error:
       type: object
       properties:
@@ -282,9 +275,16 @@ components:
           type: string
         documentation:
           type: string
+    DataSourceList:
+      type: object
+      properties:
+        datasources:
+          type: array
+          items:
+            $ref: '#/components/schemas/DataSource'
   responses:
-    Unauthorized:
-      description: Unauthorized - invalid or missing token
+    NotFound:
+      description: Resource not found
       content:
         application/json:
           schema:
@@ -295,8 +295,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Resource not found
+    Unauthorized:
+      description: Unauthorized - invalid or missing token
       content:
         application/json:
           schema:

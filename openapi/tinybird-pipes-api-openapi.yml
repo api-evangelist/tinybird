@@ -209,27 +209,29 @@ paths:
                 type: object
 components:
   schemas:
-    PipeList:
+    PipeNodeCreate:
       type: object
-      properties:
-        pipes:
-          type: array
-          items:
-            $ref: '#/components/schemas/Pipe'
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        documentation:
-          type: string
-    PipeUpdate:
-      type: object
+      required:
+      - sql
       properties:
         name:
           type: string
+        sql:
+          type: string
         description:
           type: string
+    PipeNode:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        sql:
+          type: string
+        created_at:
+          type: string
+          format: date-time
     PipeCreate:
       type: object
       required:
@@ -243,28 +245,19 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PipeNodeCreate'
-    PipeNode:
+    PipeList:
       type: object
       properties:
-        id:
-          type: string
-        name:
-          type: string
-        sql:
-          type: string
-        created_at:
-          type: string
-          format: date-time
-    PipeNodeCreate:
+        pipes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Pipe'
+    Error:
       type: object
-      required:
-      - sql
       properties:
-        name:
+        error:
           type: string
-        sql:
-          type: string
-        description:
+        documentation:
           type: string
     Pipe:
       type: object
@@ -296,6 +289,13 @@ components:
       type: object
       properties:
         sql:
+          type: string
+        description:
+          type: string
+    PipeUpdate:
+      type: object
+      properties:
+        name:
           type: string
         description:
           type: string
