@@ -365,6 +365,9 @@ solutions:
   - Data pipeline management
   - Multi-tenant data analytics
 common:
+  - type: CapabilityMap
+    url: capabilities/tinybird-capability-edges.yml
+    name: Tinybird Business Capability Map
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/tinybird/overview
   - type: AgenticAccess

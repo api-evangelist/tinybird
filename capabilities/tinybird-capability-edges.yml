@@ -1,0 +1,36 @@
+slug: tinybird
+provider: Tinybird
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 2
+edges:
+- tag: Data Sources
+  spec_file: tinybird-data-sources-api-openapi.yml
+  capability_id: BC-610
+  capability_id_l1: BC-610
+  capability_name: Information & Data Management
+  confidence: 0.75
+  evidence: GET /v0/datasources/  listDataSources  List Data Sources ... POST /v0/datasources/{name}/alter  alterDataSource
+  reason: Full lifecycle management of data sources (ingestion tables) with schema alteration and row
+    deletion in a real-time data platform — squarely Information & Data Management. L2 left null because
+    the surface spans schema/structure definition and data retention rather than one named sub-capability.
+- tag: Pipes
+  spec_file: tinybird-pipes-api-openapi.yml
+  capability_id: BC-610
+  capability_id_l1: BC-610
+  capability_name: Information & Data Management
+  confidence: 0.7
+  evidence: POST /v0/pipes/{name}/nodes  createPipeNode  Create Pipe Node ... GET /v0/pipes/{name}/explain  explainPipe  Explain
+    Pipe Query
+  reason: Pipes are the SQL transformation artefacts (node graphs) that process data and are published
+    as endpoints — data transformation/architecture work within Information & Data Management. L2 omitted
+    as the surface straddles data architecture and analytics delivery.
