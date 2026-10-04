@@ -233,7 +233,33 @@ paths:
         '200':
           description: Rows deleted successfully
 components:
+  responses:
+    Unauthorized:
+      description: Unauthorized - invalid or missing token
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad request - invalid parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        documentation:
+          type: string
     DataSourceUpdate:
       type: object
       properties:
@@ -268,13 +294,6 @@ components:
           type: boolean
         ttl_expression:
           type: string
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        documentation:
-          type: string
     DataSourceList:
       type: object
       properties:
@@ -282,25 +301,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/DataSource'
-  responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Bad request - invalid parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Unauthorized - invalid or missing token
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http

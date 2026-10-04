@@ -209,56 +209,6 @@ paths:
                 type: object
 components:
   schemas:
-    PipeNodeCreate:
-      type: object
-      required:
-      - sql
-      properties:
-        name:
-          type: string
-        sql:
-          type: string
-        description:
-          type: string
-    PipeNode:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        sql:
-          type: string
-        created_at:
-          type: string
-          format: date-time
-    PipeCreate:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        nodes:
-          type: array
-          items:
-            $ref: '#/components/schemas/PipeNodeCreate'
-    PipeList:
-      type: object
-      properties:
-        pipes:
-          type: array
-          items:
-            $ref: '#/components/schemas/Pipe'
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        documentation:
-          type: string
     Pipe:
       type: object
       properties:
@@ -292,6 +242,43 @@ components:
           type: string
         description:
           type: string
+    PipeNode:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        sql:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+    PipeList:
+      type: object
+      properties:
+        pipes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Pipe'
+    PipeNodeCreate:
+      type: object
+      required:
+      - sql
+      properties:
+        name:
+          type: string
+        sql:
+          type: string
+        description:
+          type: string
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        documentation:
+          type: string
     PipeUpdate:
       type: object
       properties:
@@ -299,6 +286,19 @@ components:
           type: string
         description:
           type: string
+    PipeCreate:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        nodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/PipeNodeCreate'
   responses:
     NotFound:
       description: Resource not found

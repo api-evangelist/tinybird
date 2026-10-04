@@ -134,6 +134,15 @@ paths:
                 $ref: '#/components/schemas/Token'
 components:
   schemas:
+    TokenUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        scopes:
+          type: array
+          items:
+            type: object
     Token:
       type: object
       properties:
@@ -155,13 +164,6 @@ components:
         created_at:
           type: string
           format: date-time
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        documentation:
-          type: string
     TokenList:
       type: object
       properties:
@@ -169,19 +171,17 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Token'
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        documentation:
+          type: string
     TokenCreate:
       type: object
       required:
       - name
-      properties:
-        name:
-          type: string
-        scopes:
-          type: array
-          items:
-            type: object
-    TokenUpdate:
-      type: object
       properties:
         name:
           type: string

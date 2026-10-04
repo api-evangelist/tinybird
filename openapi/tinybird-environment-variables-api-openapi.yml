@@ -89,6 +89,11 @@ paths:
           description: Environment variable deleted
 components:
   schemas:
+    EnvVarUpdate:
+      type: object
+      properties:
+        value:
+          type: string
     EnvVarList:
       type: object
       properties:
@@ -96,11 +101,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/EnvVar'
-    EnvVarUpdate:
-      type: object
-      properties:
-        value:
-          type: string
     EnvVar:
       type: object
       properties:

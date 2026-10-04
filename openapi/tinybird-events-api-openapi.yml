@@ -62,26 +62,19 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   responses:
-    Unauthorized:
-      description: Unauthorized - invalid or missing token
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     BadRequest:
       description: Bad request - invalid parameters
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Unauthorized - invalid or missing token
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        documentation:
-          type: string
     IngestResponse:
       type: object
       properties:
@@ -89,6 +82,13 @@ components:
           type: integer
         quarantined_rows:
           type: integer
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        documentation:
+          type: string
   securitySchemes:
     bearerAuth:
       type: http

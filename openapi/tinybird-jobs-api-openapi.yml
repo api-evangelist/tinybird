@@ -101,13 +101,6 @@ components:
           format: date-time
         error:
           type: string
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        documentation:
-          type: string
     JobList:
       type: object
       properties:
@@ -115,6 +108,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Job'
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        documentation:
+          type: string
   responses:
     NotFound:
       description: Resource not found
