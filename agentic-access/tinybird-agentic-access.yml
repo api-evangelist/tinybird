@@ -1,19 +1,38 @@
-generated: '2026-07-15'
+generated: '2026-09-23'
 method: generated
-source: openapi/tinybird-openapi.yml
+source: openapi/tinybird-analyze-api-openapi.yml, openapi/tinybird-data-sources-api-openapi.yml,
+  openapi/tinybird-environment-variables-api-openapi.yml, openapi/tinybird-events-api-openapi.yml,
+  openapi/tinybird-jobs-api-openapi.yml, openapi/tinybird-organizations-api-openapi.yml, openapi/tinybird-pipes-api-openapi.yml,
+  openapi/tinybird-query-api-openapi.yml, openapi/tinybird-sink-pipes-api-openapi.yml, openapi/tinybird-tokens-api-openapi.yml
 description: Recommended x-agentic-access execution contracts, classified heuristically from
   the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
   audience per deployment. See research/curity/agentic-governance/.
 summary:
   operations: 38
   by_action_class:
-    connected: 15
-    acting: 23
+    acting: 22
+    connected: 16
   by_consequence:
-    read: 15
-    write: 23
+    write: 22
+    read: 16
   human_in_the_loop_required: 0
 operations:
+- path: /v0/analyze
+  method: post
+  operationId: analyzeFile
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
 - path: /v0/datasources/
   method: get
   operationId: listDataSources
@@ -130,6 +149,64 @@ operations:
       - abnormal
       - high-value
     audit: required
+- path: /v0/env_vars
+  method: get
+  operationId: listEnvironmentVariables
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v0/env_vars
+  method: post
+  operationId: createEnvironmentVariable
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v0/env_vars/{name}
+  method: put
+  operationId: updateEnvironmentVariable
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v0/env_vars/{name}
+  method: delete
+  operationId: deleteEnvironmentVariable
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
 - path: /v0/events
   method: post
   operationId: ingestEvents
@@ -146,6 +223,56 @@ operations:
       - abnormal
       - high-value
     audit: required
+- path: /v0/jobs/
+  method: get
+  operationId: listJobs
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v0/jobs/{jobId}
+  method: get
+  operationId: getJob
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v0/organizations
+  method: get
+  operationId: listOrganizations
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v0/organizations/{orgId}/members
+  method: get
+  operationId: listOrganizationMembers
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v0/organizations/{orgId}/workspaces
+  method: get
+  operationId: listOrganizationWorkspaces
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /v0/pipes/
   method: get
   operationId: listPipes
@@ -286,6 +413,26 @@ operations:
   method: post
   operationId: querySqlPost
   x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v0/sink_pipes
+  method: get
+  operationId: listSinkPipes
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v0/sink_pipes
+  method: post
+  operationId: createSinkPipe
+  x-agentic-access:
     action-class: acting
     consequence: write
     subject: required
@@ -382,153 +529,3 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /v0/jobs/
-  method: get
-  operationId: listJobs
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v0/jobs/{jobId}
-  method: get
-  operationId: getJob
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v0/analyze
-  method: post
-  operationId: analyzeFile
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /v0/env_vars
-  method: get
-  operationId: listEnvironmentVariables
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v0/env_vars
-  method: post
-  operationId: createEnvironmentVariable
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /v0/env_vars/{name}
-  method: put
-  operationId: updateEnvironmentVariable
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /v0/env_vars/{name}
-  method: delete
-  operationId: deleteEnvironmentVariable
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /v0/sink_pipes
-  method: get
-  operationId: listSinkPipes
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v0/sink_pipes
-  method: post
-  operationId: createSinkPipe
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /v0/organizations
-  method: get
-  operationId: listOrganizations
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v0/organizations/{orgId}/members
-  method: get
-  operationId: listOrganizationMembers
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v0/organizations/{orgId}/workspaces
-  method: get
-  operationId: listOrganizationWorkspaces
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
