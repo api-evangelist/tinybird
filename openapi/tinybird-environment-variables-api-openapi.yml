@@ -94,20 +94,6 @@ components:
       properties:
         value:
           type: string
-    EnvVarList:
-      type: object
-      properties:
-        env_vars:
-          type: array
-          items:
-            $ref: '#/components/schemas/EnvVar'
-    EnvVar:
-      type: object
-      properties:
-        name:
-          type: string
-        value:
-          type: string
     EnvVarCreate:
       type: object
       required:
@@ -118,6 +104,20 @@ components:
           type: string
         value:
           type: string
+    EnvVar:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+    EnvVarList:
+      type: object
+      properties:
+        env_vars:
+          type: array
+          items:
+            $ref: '#/components/schemas/EnvVar'
   securitySchemes:
     bearerAuth:
       type: http
