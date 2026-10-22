@@ -123,3 +123,16 @@
     detected: '2026-10-20'
   status: not-a-workflow
   arazzo: null
+- slug: tinybird-vercel-own
+  label: Vercel (own)
+  partner: vercel
+  partner_name: Vercel (own)
+  category: Storage
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://vercel.com/marketplace/tinybird
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
